@@ -1,0 +1,13 @@
+Possible Python libraries needed:
+
+GUI:
+1) PyGTK
+2) Tkinter
+3) PyQt/PySide
+4) Kivy
+5) wxPython
+
+DB:
+1) mysql-connector-python
+2) sqlite3
+4) psycopg2
