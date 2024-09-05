@@ -6,6 +6,7 @@ GUI:
 3) PyQt/PySide
 4) Kivy
 5) wxPython
+6) PySimpleGUI 
 
 DB:
 1) mysql-connector-python
