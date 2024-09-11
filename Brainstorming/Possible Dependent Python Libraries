@@ -7,9 +7,6 @@ GUI:
 4) Kivy
 5) wxPython
 6) PySimpleGUI/PySimpleGUIQt
-7) Django -- might be recommended talking with Austin
 
 DB:
-1) mysql-connector-python
-2) sqlite3
-4) psycopg2 - Going with Postgres
+1) psycopg2
