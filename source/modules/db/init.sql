@@ -27,7 +27,7 @@ CREATE TABLE unit (
   price_per_sqqr_ft NUMERIC(50,2),
   notes VARCHAR(200),
   PRIMARY KEY(unit_id),
-  CONSTRAINT unit_property_fk FOREIGN KEY(property_id) REFERENCES property(property_id)
+  CONSTRAINT unit_prop_fk FOREIGN KEY(property_id) REFERENCES property(property_id)
 );
 
 CREATE TABLE tenant (
@@ -42,7 +42,7 @@ CREATE TABLE rental_agreement (
   agreement_id SERIAL NOT NULL,
   property_id INTEGER NOT NULL,
   tenant_id INTEGER NOT NULL,
-  contract_id VARCHAR(50),
+  contract_num VARCHAR(50),
   contract_docs TEXT [],
   start_date DATE NOT NULL,
   end_date DATE NOT NULL,
@@ -54,6 +54,20 @@ CREATE TABLE rental_agreement (
   next_increase DATE,
   last_increase DATE,
   PRIMARY KEY(agreement_id),
-  CONSTRAINT unit_property_fk FOREIGN KEY(property_id) REFERENCES property(property_id),
-  CONSTRAINT unit_ten_fk FOREIGN KEY(tenant_id) REFERENCES tenant(tenant_id)
+  CONSTRAINT agr_prop_fk FOREIGN KEY(property_id) REFERENCES property(property_id),
+  CONSTRAINT agr_ten_fk FOREIGN KEY(tenant_id) REFERENCES tenant(tenant_id)
+);
+
+CREATE TABLE rental_invoice (
+  invoice_id SERIAL NOT NULL,
+  issue_date DATE NOT NULL,
+  cash_date DATE,
+  check_num VARCHAR(50),
+  agreement_id INTEGER NOT NULL,
+  tenant_id INTEGER NOT NULL,
+  amount_paid NUMERIC(50,2) NOT NULL,
+  notes VARCHAR(200),
+  PRIMARY KEY(invoice_id),
+  CONSTRAINT inv_ten_fk FOREIGN KEY(tenant_id) REFERENCES tenant(tenant_id),
+  CONSTRAINT inv_agr_fk FOREIGN KEY(agreement_id) REFERENCES rental_agreement(agreement_id)
 );
