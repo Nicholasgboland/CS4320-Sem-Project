@@ -71,3 +71,23 @@ CREATE TABLE rental_invoice (
   CONSTRAINT inv_ten_fk FOREIGN KEY(tenant_id) REFERENCES tenant(tenant_id),
   CONSTRAINT inv_agr_fk FOREIGN KEY(agreement_id) REFERENCES rental_agreement(agreement_id)
 );
+
+CREATE TABLE maint_report (
+  maint_record_id SERIAL NOT NULL,
+  maint_report_date DATE NOT NULL,
+  property_id INTEGER NOT NULL,
+  unit_id INTEGER,
+  notes VARCHAR(200),
+  PRIMARY KEY(maint_record_id),
+  CONSTRAINT mr_prop_fk FOREIGN KEY(property_id) REFERENCES property(property_id),
+  CONSTRAINT mr_unit_fk FOREIGN KEY(unit_id) REFERENCES unit(unit_id)
+);
+
+CREATE TABLE maint_report_item (
+  maint_item_id SERIAL NOT NULL,
+  maint_report_id INTEGER NOT NULL,
+  maint_item_name VARCHAR(100) NOT NULL,
+  notes VARCHAR(200),
+  PRIMARY KEY(maint_item_id),
+  CONSTRAINT mri_mr_fk FOREIGN KEY(maint_report_id) REFERENCES maint_report(maint_report_id)
+);
