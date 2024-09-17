@@ -91,3 +91,32 @@ CREATE TABLE maint_report_item (
   PRIMARY KEY(maint_item_id),
   CONSTRAINT mri_mr_fk FOREIGN KEY(maint_report_id) REFERENCES maint_report(maint_report_id)
 );
+
+CREATE TABLE maint_quote (
+  maint_quote_id SERIAL NOT NULL,
+  maint_report_id INTEGER NOT NULL,
+  maint_quote_date DATE NOT NULL,
+  quote_total NUMERIC(50,2) NOT NULL,
+  PRIMARY KEY(maint_quote_id),
+  CONSTRAINT mq_mr_fk FOREIGN KEY(maint_report_id) REFERENCES maint_report(maint_report_id)
+);
+
+CREATE TABLE maint_quote_item (
+  quote_item_id SERIAL NOT NULL,
+  maint_quote_id INTEGER NOT NULL,
+  quote_item_name VARCHAR(100) NOT NULL,
+  quote_item_cost NUMERIC(50,2),
+  PRIMARY KEY(quote_item_id),
+  CONSTRAINT mqi_mq_fk FOREIGN KEY(maint_quote_id) REFERENCES maint_quote(maint_quote_id)
+);
+
+CREATE TABLE maint_quote_invoice (
+  maint_invoice_id SERIAL NOT NULL,
+  maint_quote_id INTEGER NOT NULL,
+  issue_date DATE NOT NULL,
+  check_num VARCHAR(50),
+  amount_paid NUMERIC(50,2) NOT NULL,
+  notes VARCHAR(200),
+  PRIMARY KEY(maint_invoice_id),
+  CONSTRAINT mqv_mq_fk FOREIGN KEY(maint_quote_id) REFERENCES maint_quote(maint_quote_id)
+);
