@@ -1,10 +1,10 @@
 -- SQL file to initialize DB
 CREATE TABLE property (
-  property_id SERIAL NOT NULL,
-  name VARCHAR(100) NOT NULL,
-  street_addr VARCHAR(100) NOT NULL,
-  city VARCHAR(100) NOT NULL,
-  county VARCHAR(100),
+  property_id SERIAL NOT NULL, -- Unique internal identifier for each property
+  name VARCHAR(100) NOT NULL, -- Name of the property
+  street_addr VARCHAR(100) NOT NULL, -- Property's street address
+  city VARCHAR(100) NOT NULL, -- Property's city
+  county VARCHAR(100), -- Porperty's
   state_abrv VARCHAR(2) NOT NULL,
   zip NUMBER(5) NOT NULL,
   purchase_date DATE,
