@@ -120,3 +120,26 @@ CREATE TABLE maint_quote_invoice (
   PRIMARY KEY(maint_invoice_id),
   CONSTRAINT mqv_mq_fk FOREIGN KEY(maint_quote_id) REFERENCES maint_quote(maint_quote_id)
 );
+
+CREATE TABLE expense_report (
+  expense_record_id SERIAL NOT NULL,
+  expense_report_date DATE NOT NULL,
+  property_id INTEGER NOT NULL,
+  unit_id INTEGER,
+  expense_total NUMERIC(50,2) NOT NULL,
+  notes VARCHAR(200),
+  PRIMARY KEY(expense_record_id),
+  CONSTRAINT er_prop_fk FOREIGN KEY(property_id) REFERENCES property(property_id),
+  CONSTRAINT er_unit_fk FOREIGN KEY(unit_id) REFERENCES unit(unit_id)
+);
+
+CREATE TABLE expense_report_item (
+  expense_item_id SERIAL NOT NULL,
+  expense_report_id INTEGER NOT NULL,
+  expense_item_name VARCHAR(100) NOT NULL,
+  expense_item_cost NUMERIC(50,2),
+  epense_type VARCHAR(100) NOT NULL,
+  notes VARCHAR(200),
+  PRIMARY KEY(expense_item_id),
+  CONSTRAINT eri_er_fk FOREIGN KEY(maint_report_id) REFERENCES expense_report(maint_report_id)
+);
