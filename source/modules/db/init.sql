@@ -138,7 +138,7 @@ CREATE TABLE expense_report_item (
   expense_report_id INTEGER NOT NULL,
   expense_item_name VARCHAR(100) NOT NULL,
   expense_item_cost NUMERIC(50,2),
-  epense_type VARCHAR(100) NOT NULL,
+  epense_type VARCHAR(100) NOT NULL CHECK(expense_type = 'BILLS'),
   notes VARCHAR(200),
   PRIMARY KEY(expense_item_id),
   CONSTRAINT eri_er_fk FOREIGN KEY(maint_report_id) REFERENCES expense_report(maint_report_id)
