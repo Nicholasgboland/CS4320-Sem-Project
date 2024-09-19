@@ -5,5 +5,8 @@ lecture 8 9/19/2024
 1.) Centeralized or decenteralized 
 Decenteralized is the path we believe that our path should take, because we are working with landlords, not large companies, meaning that an indivdual needs to carry their personal laptop
 2.) 1-2 use-case scenarios / user stories
-As a landlord I want to manage rent on my property, by selecting the property. As a land lord I want to generate rent reports, for all my properties on my expenses page.
+As a landlord I want to manage rent on my property, by selecting the property. As a land lord I want to generate rent reports, for all my properties on my property page.
+3.) Reform question 2 so that it has the format of functional format
+As a landlord I want to manage rent on my property, by selecting the property, so that I know which property rent I am changing
+As a landlord I want to generate rent reports, for all my properties on my property page, to view the rent earned
 
