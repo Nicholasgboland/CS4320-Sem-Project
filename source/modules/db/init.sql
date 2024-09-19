@@ -138,8 +138,41 @@ CREATE TABLE expense_report_item (
   expense_report_id INTEGER NOT NULL,
   expense_item_name VARCHAR(100) NOT NULL,
   expense_item_cost NUMERIC(50,2),
-  epense_type VARCHAR(100) NOT NULL CHECK(expense_type = 'BILLS'),
+  epense_type VARCHAR(100) NOT NULL CHECK(
+    expense_type = 'Advertising' OR
+    expense_type = 'Auto/Travel' OR
+    expense_type = 'Commissions' OR
+    expense_type = 'Donations' OR
+    expense_type = 'Insurance' OR
+    expense_type = 'Morgage Interest' OR
+    expense_type = 'Office Eqpt/Supplies' OR
+    expense_type = 'Taxes' OR
+    expense_type = 'Service - Cleaning' OR
+    expense_type = 'Service - Telephone' OR
+    expense_type = 'Service - Management' OR
+    expense_type = 'Service - Legal' OR
+    expense_type = 'UT - Water' OR
+    expense_type = 'UT - Sewer' OR
+    expense_type = 'UT - Trash' OR
+    expense_type = 'UT - Gas/Elec' OR
+    expense_type = 'Other' OR
+  ),
+  expense_category VARCHAR(100) GENERATED ALWAYS AS (
+    CASE WHEN expense_type NOT IN ('Service - Cleaning', 'Insurance', 'Taxes', 'Morgage Interest') THEN 'Variable Expense'
+         WHEN expense_type IN ('Service - Cleaning', 'Insurance', 'Taxes', 'Morgage Interest') THEN 'Fixed Expense' END
+  ) STORED,
   notes VARCHAR(200),
   PRIMARY KEY(expense_item_id),
   CONSTRAINT eri_er_fk FOREIGN KEY(maint_report_id) REFERENCES expense_report(maint_report_id)
 );
+
+CREATE VIEW variable_expense_report AS SELECT
+  e.expense_item_cost,
+  p.name,
+  u.name,
+  r.expense_report_date
+FROM r.expense_report_item, e.expense_report_item, p.property, u.unit WHERE
+  e.expense_report_id = r.expense_report_id AND
+  r.property_id = p.property_id AND
+  r.unit_id = u.unit_id AND
+  e.expense_category = 'Variable Expense';
