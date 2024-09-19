@@ -1,6 +1,9 @@
 These information may or may not need to appear on slides for either midterm or final presentation, I believe that having this file as we develop further in lectures, as we are nearly done 
 with drawing models (can't gurantee) 
-lecture 8 9/19/2024
 
+lecture 8 9/19/2024
 1.) Centeralized or decenteralized 
 Decenteralized is the path we believe that our path should take, because we are working with landlords, not large companies, meaning that an indivdual needs to carry their personal laptop
+2.) 1-2 use-case scenarios / user stories
+As a landlord I want to manage rent on my property, by selecting the property. As a land lord I want to generate rent reports, for all my properties on my expenses page.
+
