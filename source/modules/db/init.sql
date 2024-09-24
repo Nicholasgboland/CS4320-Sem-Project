@@ -40,7 +40,7 @@ CREATE TABLE tenant (
 
 CREATE TABLE rental_agreement (
   agreement_id SERIAL NOT NULL,
-  property_id INTEGER NOT NULL,
+  unit_id INTEGER NOT NULL,
   tenant_id INTEGER NOT NULL,
   contract_num VARCHAR(50),
   contract_docs TEXT [],
@@ -54,7 +54,7 @@ CREATE TABLE rental_agreement (
   next_increase DATE,
   last_increase DATE,
   PRIMARY KEY(agreement_id),
-  CONSTRAINT agr_prop_fk FOREIGN KEY(property_id) REFERENCES property(property_id),
+  CONSTRAINT agr_prop_fk FOREIGN KEY(unit_id) REFERENCES unit(unit_id),
   CONSTRAINT agr_ten_fk FOREIGN KEY(tenant_id) REFERENCES tenant(tenant_id)
 );
 
@@ -171,8 +171,31 @@ CREATE VIEW variable_expense_report AS SELECT
   p.name,
   u.name,
   r.expense_report_date
-FROM r.expense_report_item, e.expense_report_item, p.property, u.unit WHERE
+FROM expense_report_item r, expense_report_item e, property p, unit u WHERE
   e.expense_report_id = r.expense_report_id AND
   r.property_id = p.property_id AND
   r.unit_id = u.unit_id AND
   e.expense_category = 'Variable Expense';
+
+CREAETE VIEW fixed_expense_report AS SELECT
+  e.expense_item_cost,
+  p.name,
+  u.name,
+  r.expense_report_date
+FROM expense_report_item r, expense_report_item e, property p, unit u WHERE
+  e.expense_report_id = r.expense_report_id AND
+  r.property_id = p.property_id AND
+  r.unit_id = u.unit_id AND
+  e.expense_category = 'Fixed Expense';
+
+CREATE VIEW contribution_margin AS SELECT
+  (r.amount_paid - v.expense_item_cost) AS margin,
+  p.name,
+  u.name,
+  r.cash_date,
+  v.expense_report_date
+FROM variable_expense_report v, rental_invoice r, rental_agreement a, property p, unit u WHERE
+  a.agreement_id = r.agreement_id AND
+  a.unit_id = u.unit_id AND
+  p.property_id = u.property_id;
+
