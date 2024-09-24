@@ -10,3 +10,15 @@ As a landlord I want to manage rent on my property, by selecting the property. A
 As a landlord I want to manage rent on my property, by selecting the property, so that I know which property rent I am changing
 As a landlord I want to generate rent reports, for all my properties on my property page, to view the rent earned
 
+lecture 9 9/24/2024
+Is Layered architiecture good for our project.
+It is without doubt essential for our project, as our project, uses all the members of the architecual pattern.
+Is client server good for our project
+No it is not we will be hosting on a local computer, meaning all the information will be managed on a personal device
+Is Pipe and filter good for our project
+It's not a terriable fit for out project however the layer architecture is the best fit for our project, since we are storing it on a local computer.
+Which one is is the best for our project
+We have model-view-controller, and layered architecture, are the best options for our projct, however layered architecture is the best option for our project as it will store information
+on a local device.
+
+
