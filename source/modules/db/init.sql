@@ -6,7 +6,7 @@ CREATE TABLE property (
   city VARCHAR(100) NOT NULL, -- Property's city
   county VARCHAR(100), -- Porperty's
   state_abrv VARCHAR(2) NOT NULL,
-  zip NUMBER(5) NOT NULL,
+  zip NUMERIC(5) NOT NULL,
   purchase_date DATE,
   sqr_ft NUMERIC(10,5),
   price_per_sqqr_ft NUMERIC(50,2),
