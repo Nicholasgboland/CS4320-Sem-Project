@@ -90,7 +90,7 @@ CREATE TABLE maint_record_item (
   maint_item_name VARCHAR(100) NOT NULL,
   notes VARCHAR(200),
   PRIMARY KEY(maint_item_id),
-  CONSTRAINT mri_mr_fk FOREIGN KEY(maint_report_id) REFERENCES maint_report(maint_record_id)
+  CONSTRAINT mri_mr_fk FOREIGN KEY(maint_report_id) REFERENCES maint_record(maint_record_id)
 );
 
 CREATE TABLE maint_quote (
@@ -99,7 +99,7 @@ CREATE TABLE maint_quote (
   maint_quote_date DATE NOT NULL,
   quote_total NUMERIC(50,2) NOT NULL,
   PRIMARY KEY(maint_quote_id),
-  CONSTRAINT mq_mr_fk FOREIGN KEY(maint_report_id) REFERENCES maint_report(maint_record_id)
+  CONSTRAINT mq_mr_fk FOREIGN KEY(maint_report_id) REFERENCES maint_record(maint_record_id)
 );
 
 CREATE TABLE maint_quote_item (
@@ -178,7 +178,7 @@ FROM expense_report_item r, expense_report_item e, property p, unit u WHERE
   r.unit_id = u.unit_id AND
   e.expense_category = 'Variable Expense';
 
-CREAETE VIEW fixed_expense_report AS SELECT
+CREATE VIEW fixed_expense_report AS SELECT
   e.expense_item_cost,
   p.name,
   u.name,
