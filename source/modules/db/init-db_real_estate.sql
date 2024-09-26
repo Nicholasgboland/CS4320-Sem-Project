@@ -180,8 +180,8 @@ FROM expense_record r, expense_record_item e, property p, unit u WHERE
 
 CREATE VIEW fixed_expense_report AS SELECT
   e.expense_item_cost,
-  p.name,
-  u.name,
+  p.name AS property_name,
+  u.name AS unit_name,
   r.expense_report_date
 FROM expense_record r, expense_record_item e, property p, unit u WHERE
   e.expense_record_id = r.expense_record_id AND
@@ -191,8 +191,8 @@ FROM expense_record r, expense_record_item e, property p, unit u WHERE
 
 CREATE VIEW contribution_margin AS SELECT
   (r.amount_paid - v.expense_item_cost) AS margin,
-  p.name,
-  u.name,
+  p.name AS property_name,
+  u.name AS unit_name,
   r.cash_date,
   v.expense_report_date
 FROM variable_expense_report v, rental_invoice r, rental_agreement a, property p, unit u WHERE
