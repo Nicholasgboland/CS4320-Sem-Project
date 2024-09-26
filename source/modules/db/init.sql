@@ -139,7 +139,7 @@ CREATE TABLE expense_report_item (
   expense_record_id INTEGER NOT NULL,
   expense_item_name VARCHAR(100) NOT NULL,
   expense_item_cost NUMERIC(50,2),
-  epense_type VARCHAR(100) NOT NULL CHECK(
+  expense_type VARCHAR(100) NOT NULL CHECK(
     expense_type = 'Advertising' OR
     expense_type = 'Auto/Travel' OR
     expense_type = 'Commissions' OR
@@ -172,7 +172,7 @@ CREATE VIEW variable_expense_report AS SELECT
   p.name,
   u.name,
   r.expense_report_date
-FROM expense_report_item r, expense_report_item e, property p, unit u WHERE
+FROM expense_report r, expense_report_item e, property p, unit u WHERE
   e.expense_report_id = r.expense_report_id AND
   r.property_id = p.property_id AND
   r.unit_id = u.unit_id AND
@@ -183,7 +183,7 @@ CREATE VIEW fixed_expense_report AS SELECT
   p.name,
   u.name,
   r.expense_report_date
-FROM expense_report_item r, expense_report_item e, property p, unit u WHERE
+FROM expense_report r, expense_report_item e, property p, unit u WHERE
   e.expense_report_id = r.expense_report_id AND
   r.property_id = p.property_id AND
   r.unit_id = u.unit_id AND
