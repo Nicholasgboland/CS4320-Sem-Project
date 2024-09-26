@@ -72,9 +72,9 @@ CREATE TABLE rental_invoice (
   CONSTRAINT inv_agr_fk FOREIGN KEY(agreement_id) REFERENCES rental_agreement(agreement_id)
 );
 
-CREATE TABLE maint_report (
+CREATE TABLE maint_record (
   maint_record_id SERIAL NOT NULL,
-  maint_report_date DATE NOT NULL,
+  maint_record_date DATE NOT NULL,
   property_id INTEGER NOT NULL,
   unit_id INTEGER,
   notes VARCHAR(200),
@@ -83,22 +83,22 @@ CREATE TABLE maint_report (
   CONSTRAINT mr_unit_fk FOREIGN KEY(unit_id) REFERENCES unit(unit_id)
 );
 
-CREATE TABLE maint_report_item (
+CREATE TABLE maint_record_item (
   maint_item_id SERIAL NOT NULL,
-  maint_report_id INTEGER NOT NULL,
+  maint_record_id INTEGER NOT NULL,
   maint_item_name VARCHAR(100) NOT NULL,
   notes VARCHAR(200),
   PRIMARY KEY(maint_item_id),
-  CONSTRAINT mri_mr_fk FOREIGN KEY(maint_report_id) REFERENCES maint_report(maint_report_id)
+  CONSTRAINT mri_mr_fk FOREIGN KEY(maint_report_id) REFERENCES maint_report(maint_record_id)
 );
 
 CREATE TABLE maint_quote (
   maint_quote_id SERIAL NOT NULL,
-  maint_report_id INTEGER NOT NULL,
+  maint_record_id INTEGER NOT NULL,
   maint_quote_date DATE NOT NULL,
   quote_total NUMERIC(50,2) NOT NULL,
   PRIMARY KEY(maint_quote_id),
-  CONSTRAINT mq_mr_fk FOREIGN KEY(maint_report_id) REFERENCES maint_report(maint_report_id)
+  CONSTRAINT mq_mr_fk FOREIGN KEY(maint_report_id) REFERENCES maint_report(maint_record_id)
 );
 
 CREATE TABLE maint_quote_item (
