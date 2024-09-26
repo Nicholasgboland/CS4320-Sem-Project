@@ -169,8 +169,8 @@ CREATE TABLE expense_record_item (
 
 CREATE VIEW variable_expense_report AS SELECT
   e.expense_item_cost,
-  p.name,
-  u.name,
+  p.name AS property_name,
+  u.name AS unit_name,
   r.expense_report_date
 FROM expense_record r, expense_record_item e, property p, unit u WHERE
   e.expense_record_id = r.expense_record_id AND
