@@ -156,7 +156,7 @@ CREATE TABLE expense_report_item (
     expense_type = 'UT - Sewer' OR
     expense_type = 'UT - Trash' OR
     expense_type = 'UT - Gas/Elec' OR
-    expense_type = 'Other' OR
+    expense_type = 'Other'
   ),
   expense_category VARCHAR(100) GENERATED ALWAYS AS (
     CASE WHEN expense_type NOT IN ('Service - Cleaning', 'Insurance', 'Taxes', 'Morgage Interest') THEN 'Variable Expense'
