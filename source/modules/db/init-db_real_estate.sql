@@ -122,7 +122,7 @@ CREATE TABLE maint_quote_invoice (
   CONSTRAINT mqv_mq_fk FOREIGN KEY(maint_quote_id) REFERENCES maint_quote(maint_quote_id)
 );
 
-CREATE TABLE expense_report (
+CREATE TABLE expense_record (
   expense_record_id SERIAL NOT NULL,
   expense_report_date DATE NOT NULL,
   property_id INTEGER NOT NULL,
@@ -134,7 +134,7 @@ CREATE TABLE expense_report (
   CONSTRAINT er_unit_fk FOREIGN KEY(unit_id) REFERENCES unit(unit_id)
 );
 
-CREATE TABLE expense_report_item (
+CREATE TABLE expense_record_item (
   expense_item_id SERIAL NOT NULL,
   expense_record_id INTEGER NOT NULL,
   expense_item_name VARCHAR(100) NOT NULL,
@@ -164,7 +164,7 @@ CREATE TABLE expense_report_item (
   ) STORED,
   notes VARCHAR(200),
   PRIMARY KEY(expense_item_id),
-  CONSTRAINT eri_er_fk FOREIGN KEY(expense_record_id) REFERENCES expense_report(expense_record_id)
+  CONSTRAINT eri_er_fk FOREIGN KEY(expense_record_id) REFERENCES expense_record(expense_record_id)
 );
 
 CREATE VIEW variable_expense_report AS SELECT
@@ -172,8 +172,8 @@ CREATE VIEW variable_expense_report AS SELECT
   p.name,
   u.name,
   r.expense_report_date
-FROM expense_report r, expense_report_item e, property p, unit u WHERE
-  e.expense_report_id = r.expense_report_id AND
+FROM expense_record r, expense_record_item e, property p, unit u WHERE
+  e.expense_record_id = r.expense_record_id AND
   r.property_id = p.property_id AND
   r.unit_id = u.unit_id AND
   e.expense_category = 'Variable Expense';
@@ -183,8 +183,8 @@ CREATE VIEW fixed_expense_report AS SELECT
   p.name,
   u.name,
   r.expense_report_date
-FROM expense_report r, expense_report_item e, property p, unit u WHERE
-  e.expense_report_id = r.expense_report_id AND
+FROM expense_record r, expense_record_item e, property p, unit u WHERE
+  e.expense_record_id = r.expense_record_id AND
   r.property_id = p.property_id AND
   r.unit_id = u.unit_id AND
   e.expense_category = 'Fixed Expense';
