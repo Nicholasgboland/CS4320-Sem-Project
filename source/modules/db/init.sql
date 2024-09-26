@@ -35,7 +35,8 @@ CREATE TABLE tenant (
   name VARCHAR(100) NOT NULL,
   phone VARCHAR(100) NOT NULL,
   email VARCHAR(100) NOT NULL,
-  notes VARCHAR(200)
+  notes VARCHAR(200),
+  PRIMARY KEY(tenant_id)
 );
 
 CREATE TABLE rental_agreement (
