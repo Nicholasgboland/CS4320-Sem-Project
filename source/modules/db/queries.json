@@ -1,1 +1,6 @@
-# JSON of DB SQL statements
+{
+  "VIEW_PROPERTY": "SELECT * FROM property WHERE name = {property_name} AND street_addr = {street_addr} AND city = {city} AND county = {county} AND state_abrv = {state_abrv} AND zip = {zip}",
+  "VIEW_UNIT": "SELECT * FROM unit WHERE property_id = {property_id} AND name = {unit_name} AND unit_number = {unit_number}",
+  "VIEW_ALL_RENT_AGR": "SELECT * FROM rental_agreement WHERE unit_id = {unit_id}",
+  "VIEW_1_RENT_AGR": "SELECT * FROM rental_agreement WHERE start_date = {start_date} AND end_date = {end_date} AND unit_id = {unit_id}",
+}
