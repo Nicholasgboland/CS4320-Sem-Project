@@ -198,5 +198,6 @@ CREATE VIEW contribution_margin AS SELECT
 FROM variable_expense_report v, rental_invoice r, rental_agreement a, property p, unit u WHERE
   a.agreement_id = r.agreement_id AND
   a.unit_id = u.unit_id AND
+  v.expense_report_date <= r.cash_date AND
   p.property_id = u.property_id;
 
