@@ -43,7 +43,8 @@ def execSQL(DBinfo, execSQL):
     )) as connection:
       connection.autocommit = True
         with connection.cursor() as cursor:
-          results = cursor.execute(execSQL)
+          cursor.execute(execSQL)
+          results = cursor.fetchall()
   except Error as e:
     print("Error: ", e)
   return results
