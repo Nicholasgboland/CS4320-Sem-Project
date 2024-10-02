@@ -32,7 +32,6 @@ def buildExecSQL(query, parametersDict):
   return execSQL
 
 def execSQL(DBinfo, execSQL):
-  results = []
   try:
     with contextlib.closing(connect(
       host=DBinfo["host"],
@@ -44,7 +43,10 @@ def execSQL(DBinfo, execSQL):
       connection.autocommit = True
         with connection.cursor() as cursor:
           cursor.execute(execSQL)
-          results = cursor.fetchall()
+          if cursor.description is not None:
+            results = cursor.fetchall()
+          else:
+            results = None
   except Error as e:
     print("Error: ", e)
   return results
