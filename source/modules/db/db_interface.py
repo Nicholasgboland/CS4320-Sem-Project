@@ -1,20 +1,47 @@
-import psycopg2
+import psycopg2, contextlib, json
 from psycopg2 import connect, Error
-import contextlib
 from getpass import getpass
-import json
 from string import Formatter
 
 def initQueries():
-  with opne("SQL.json") as query_file:
-    query_dict = json.load(query_file)
-  return query_dict
+  with opne("SQL.json") as queryFile:
+    queryDict = json.load(queryFile)
+  return queryDict
 
-def getQuery(queryName, query_dict):
-  query = query_dict[name]
+def initDBInfo():
+  DBinfo = {}
+  with open() as infile:
+    dbParms = json.load(infile)
+  DBinfo["DB"] = dbParms["Database"]
+  DBinfo["port"] = dbParms["Port"]
+  DBinfo["host"] = dbParms["Host"]
+  DBinfo["user"] = input("Enter username: ")
+  DBinfo["passwd"] = getpass("Enter password: ")
+  return DBinfo
+
+def getQuery(queryName, queryDict):
+  query = queryDict[queryName]
   parameters = [pname for _, pname, _, _ in Formatter().parse(query) if pname]
-  parameters_dict = []
+  parametersDict = {}
   for param in parameters:
-    parameters_dict[i] = "NULL"
-  return query, parameters_dict
+    parametersDict[param] = "NULL"
+  return query, parametersDict
 
+def buildExecSQL(query, parametersDict):
+  execSQL = query.format(**parametersDict)
+  return execSQL
+
+def execSQL(DBinfo, execSQL):
+  try:
+    with contextlib.closing(connect(
+      host=DBinfo["host"],
+      user=DBinfo["user"],
+      password=DBinfo["passwd"],
+      port=DBinfo["port"],
+      database=DBinfo["DB"],
+    )) as connection:
+      connection.autocommit = True
+        with connection.cursor() as cursor:
+          cursor.execute(execSQL)
+  except Error as e:
+    print("Error: ", e)
