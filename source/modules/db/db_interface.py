@@ -5,7 +5,7 @@ from getpass import getpass
 import json
 from string import Formatter
 
-def initQueries:
+def initQueries():
   with opne("SQL.json") as query_file:
     query_dict = json.load(query_file)
   return query_dict
