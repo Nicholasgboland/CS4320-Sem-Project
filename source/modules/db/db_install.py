@@ -4,7 +4,8 @@ from psycopg2 import connect, Error
 from getpass import getpass
 from string import Formatter
 
-DBinfo ={}
+DBinfo = {}
+adminDBinfo = {}
 adminDBinfo["DB"] = "postgres"
 adminDBinfo["port"] = input("Enter install database port (default: ###): ")
 adminDBinfo["host"] = input("Enter install database port (default: ###): ")
@@ -33,11 +34,11 @@ try:
     )) as connection:
       connection.autocommit = True
         with connection.cursor() as cursor:
-          directory = []
+          dataDirectory = []
           cursor.execute("SHOW data_directory")
           if cursor.definition is not None:
-            directory = cursor.fetchall()
-            DBinfo["directory"] = directory
+            dataDirectory = cursor.fetchall()
+            DBinfo["directory"] = dataDirectory
           cursor.execute("CREATE DATABASE real_estate")
           cursor.execut(createUsrSQL)
           cursor.execut(grant1SQL)
