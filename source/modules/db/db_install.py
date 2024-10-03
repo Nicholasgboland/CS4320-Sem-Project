@@ -8,9 +8,9 @@ DBinfo = {}
 adminDBinfo = {}
 adminDBinfo["DB"] = "postgres"
 adminDBinfo["port"] = input("Enter install database port (default: ###): ")
-adminDBinfo["host"] = input("Enter install database port (default: ###): ")
-adminDBinfo["user"] = input("Enter install database username (default: postgres): ")
-adminDBinfo["passwd"] = getpass("Enter install database password: ")
+adminDBinfo["host"] = "localhost"
+adminDBinfo["user"] = "postgres"
+adminDBinfo["passwd"] = getpass("Enter install database admin (postgres) password: ")
 
 print("Creating new login user, this will be the username/password that will be used to login to the application:")
 DBinfo["DB"] = adminDBinfo["DB"]
