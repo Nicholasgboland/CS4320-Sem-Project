@@ -36,7 +36,7 @@ try:
         with connection.cursor() as cursor:
           dataDirectory = []
           cursor.execute("SHOW data_directory")
-          if cursor.definition is not None:
+          if cursor.description is not None:
             dataDirectory = cursor.fetchall()
             DBinfo["directory"] = dataDirectory
           cursor.execute("CREATE DATABASE real_estate")
