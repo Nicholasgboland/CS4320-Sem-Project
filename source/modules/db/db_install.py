@@ -7,7 +7,7 @@ from string import Formatter
 DBinfo = {}
 adminDBinfo = {}
 adminDBinfo["DB"] = "postgres"
-adminDBinfo["port"] = input("Enter install database port (default: ###): ")
+adminDBinfo["port"] = input("Enter install database port (default: 5432): ")
 adminDBinfo["host"] = "localhost"
 adminDBinfo["user"] = "postgres"
 adminDBinfo["passwd"] = getpass("Enter install database admin (postgres) password: ")
@@ -40,9 +40,9 @@ try:
             dataDirectory = cursor.fetchall()
             DBinfo["directory"] = dataDirectory
           cursor.execute("CREATE DATABASE real_estate")
-          cursor.execut(createUsrSQL)
-          cursor.execut(grant1SQL)
-          cursor.execut(grant2SQL)
+          cursor.execute(createUsrSQL)
+          cursor.execute(grant1SQL)
+          cursor.execute(grant2SQL)
   except Error as e:
     print("Error: ", e)
 
