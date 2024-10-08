@@ -4,13 +4,13 @@ from getpass import getpass
 from string import Formatter
 
 def initQueries():
-    with open('files/SQL.json', 'r') as queryFile:
+    with open('modules/db/files/SQL.json', 'r') as queryFile:
         queryDict = json.load(queryFile)
     return queryDict
 
 def initDBInfo():
     DBinfo = {}
-    with open('files/DB_config.json' 'r') as infile:
+    with open('modules/db/files/DB_config.json' 'r') as infile:
         dbParms = json.load(infile)
         DBinfo["DB"] = dbParms["Database"]
         DBinfo["port"] = dbParms["Port"]
