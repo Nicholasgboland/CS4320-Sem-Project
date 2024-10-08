@@ -20,7 +20,18 @@ def initDBInfo(userName, userPsswd):
     return DBinfo
 
 def testConnection(DBinfo):
-    
+    try:
+        with contextlib.closing(connect(
+            host=DBinfo["host"],
+            user=DBinfo["user"],
+            password=DBinfo["passwd"],
+            port=DBinfo["port"],
+            database=DBinfo["DB"],
+        )) as connection:
+            return "Successful Login"
+    except Error as e:
+        print("Failed login: ", e)
+        return 0.
 
 def getQuery(queryName, queryDict):
     query = queryDict[queryName]
