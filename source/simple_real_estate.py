@@ -1,6 +1,6 @@
 import modules
 from modules import db
 
-myQueries = initQueries()
+myQueries = db.db_interface.initQueries()
 
 print(myQueries)
