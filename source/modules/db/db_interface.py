@@ -1,101 +1,57 @@
-import psycopg2, json, contextlib
+import psycopg2, contextlib, json
 from psycopg2 import connect, Error
 from getpass import getpass
 from string import Formatter
 
-def getAdminDBParms():
-    adminDBinfo = {}
-    adminDBinfo["DB"] = "postgres"
-    adminDBinfo["port"] = input("Enter install database port (default: 5432): ")
-    adminDBinfo["host"] = "localhost"
-    adminDBinfo["user"] = "postgres"
-    adminDBinfo["passwd"] = getpass("Enter install database admin (postgres) password: ")
+def initQueries():
+    with open('SQL.json', 'r') as queryFile:
+        queryDict = json.load(queryFile)
+    return queryDict
 
-    return adminDBinfo
-
-def getDBParms(adminDBinfo):
+def initDBInfo():
     DBinfo = {}
-    print("Creating new login user, this will be the username/password that will be used to login to the application:")
-    DBinfo["DB"] = "real_estate"
-    DBinfo["port"] = adminDBinfo["port"]
-    DBinfo["host"] = "localhost"
-    DBinfo["user"] = input("Enter new database username: ")
-    DBinfo["passwd"] = getpass("Enter new database password: ")
-
+    with open('DB_config.json' 'r') as infile:
+        dbParms = json.load(infile)
+        DBinfo["DB"] = dbParms["Database"]
+        DBinfo["port"] = dbParms["Port"]
+        DBinfo["host"] = dbParms["Host"]
+        DBinfo["user"] = input("Enter username: ")
+        DBinfo["passwd"] = getpass("Enter password: ")
     return DBinfo
 
-def initSQL(adminDBinfo, DBinfo):
-    try:
-        with contextlib.closing(connect(
-            host=adminDBinfo["host"],
-            user=adminDBinfo["user"],
-            password=adminDBinfo["passwd"],
-            port=adminDBinfo["port"],
-            database=adminDBinfo["DB"],
-        )) as connection:
-            connection.autocommit = True
-            with connection.cursor() as cursor:
-                dataDirectory = []
-                cursor.execute("SHOW data_directory")
-                if cursor.description is not None:
-                    dataDirectory = cursor.fetchall()
-                    DBinfo["directory"] = dataDirectory
-                cursor.execute("CREATE DATABASE real_estate")
-    except Error as e:
-        print("Error: ", e)
+def getQuery(queryName, queryDict):
+    query = queryDict[queryName]
+    parameters = [pname for _, pname, _, _ in Formatter().parse(query) if pname]
+    parametersDict = {}
+    for param in parameters:
+        parametersDict[param] = "NULL"
+    return query, parametersDict
 
-def execSQL(execSQL, DBparms):
+def setParameters(key, value, parametersDict):
+    parametersDict[key] = "'" + value + "'"
+    return parametersDict
+
+def buildExecSQL(query, parametersDict):
+    execSQL = query.format(**parametersDict)
+    return execSQL
+
+def execSQL(DBinfo, execSQL):
     try:
         with contextlib.closing(connect(
-            host=DBparms["host"],
-            user=DBparms["user"],
-            password=DBparms["passwd"],
-            port=DBparms["port"],
-            database=DBparms["DB"],
+            host=DBinfo["host"],
+            user=DBinfo["user"],
+            password=DBinfo["passwd"],
+            port=DBinfo["port"],
+            database=DBinfo["DB"],
         )) as connection:
             connection.autocommit = True
             with connection.cursor() as cursor:
                 cursor.execute(execSQL)
+                if cursor.description is not None:
+                    results = cursor.fetchall()
+                else:
+                    results = None
     except Error as e:
         print("Error: ", e)
-
-def createDB(DBinfo):
-    with open('init-db_real_estate.sql') as infile:
-        sqlFile = infile.read()
-        try:
-            with contextlib.closing(connect(
-                host=DBinfo["host"],
-                user=DBinfo["user"],
-                password=DBinfo["passwd"],
-                port=DBinfo["port"],
-                database=DBinfo["DB"],
-            )) as connection:
-                connection.autocommit = True
-                with connection.cursor() as cursor:
-                    cursor.execute(sqlFile)
-        except Error as e:
-            print("Error: ", e)
-
-
-adminDBparms = getAdminDBParms()
-DBparms = getDBParms(adminDBparms)
-initSQL(adminDBparms, DBparms)
-
-createUsrSQL = "CREATE ROLE {newUser} LOGIN PASSWORD '{newPasswd}'".format(newUser = DBparms["user"], newPasswd = DBparms["passwd"])
-grant1SQL = "GRANT CONNECT ON DATABASE real_estate TO {newUser}".format(newUser = DBparms["user"])
-grant2SQL = "GRANT ALL PRIVILEGES ON DATABASE real_estate to {newUser}".format(newUser = DBparms["user"])
-grant3SQL = "GRANT USAGE, CREATE ON SCHEMA public TO {newUser}".format(newUser = DBparms["user"])
-
-execSQL(createUsrSQL, adminDBparms)
-execSQL(grant1SQL, adminDBparms)
-execSQL(grant2SQL, adminDBparms)
-execSQL(grant3SQL, adminDBparms)
-adminDBparms["DB"] = "real_estate"
-execSQL(grant3SQL, adminDBparms)
-createDB(DBparms)
-
-with open('DB_config.json', 'w') as outfile:
-    del DBparms["user"]
-    del DBparms["passwd"]
-    jsonFile = json.dumps(DBparms, indent=4)
-    outfile.write(jsonFile)
+    
+    return results
