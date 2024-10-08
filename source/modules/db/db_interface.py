@@ -8,16 +8,19 @@ def initQueries():
         queryDict = json.load(queryFile)
     return queryDict
 
-def initDBInfo():
+def initDBInfo(userName, userPsswd):
     DBinfo = {}
     with open('modules/db/files/DB_config.json' 'r') as infile:
         dbParms = json.load(infile)
         DBinfo["DB"] = dbParms["Database"]
         DBinfo["port"] = dbParms["Port"]
         DBinfo["host"] = dbParms["Host"]
-        DBinfo["user"] = input("Enter username: ")
-        DBinfo["passwd"] = getpass("Enter password: ")
+        DBinfo["user"] = userName
+        DBinfo["passwd"] = userPsswd
     return DBinfo
+
+def testConnection(DBinfo):
+    
 
 def getQuery(queryName, queryDict):
     query = queryDict[queryName]
