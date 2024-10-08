@@ -60,7 +60,7 @@ def execSQL(execSQL, DBparms):
         print("Error: ", e)
 
 def createDB(DBinfo):
-    with open('init-db_real_estate.sql') as infile:
+    with open('files/init-db_real_estate.sql') as infile:
         sqlFile = infile.read()
         try:
             with contextlib.closing(connect(
@@ -94,6 +94,6 @@ adminDBparms["DB"] = "real_estate"
 execSQL(grant3SQL, adminDBparms)
 createDB(DBparms)
 
-with open('DB_config.json', 'w') as outfile:
+with open('files/DB_config.json', 'w') as outfile:
     jsonFile = json.dumps(DBparms, indent=4)
     outfile.write(jsonFile)
