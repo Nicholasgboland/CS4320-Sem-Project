@@ -28,10 +28,10 @@ def testConnection(DBinfo):
             port=DBinfo["port"],
             database=DBinfo["DB"],
         )) as connection:
-            return "Successful Login"
+            return 0
     except Error as e:
         print("Failed login: ", e)
-        return 0.
+        return 1
 
 def getQuery(queryName, queryDict):
     query = queryDict[queryName]
