@@ -1,0 +1,12 @@
+{
+	"LIST_PROPERTIES":				"SELECT property_id, name FROM property",
+	"VIEW_PROPERTY":				"SELECT * FROM property WHERE property_id = {property_id}"
+	"LIST_UNITS":					"SELECT unit_id, name, unit_number FROM unit WHERE property_id = {property_id}",
+	"VIEW_UNIT":					"SELECT * FROM unit WHERE property_id = {property_id} AND unit_id = {unit_id}",
+	"LIST_RENTAL_AGREEMENTS":		"SELECT agreement_id, start_date, end_date FROM rental_agreement WHERE property_id = {property_id} AND unit_id = {unit_id}",
+	"VIEW_RENTAL_AGREEMENT":		"SELECT * FROM rental_agreement WHERE agreement_id = {agreement_id}",
+	"LIST_RENTAL_INVOICES":			"SELECT invoice_id, issue_date FROM rental_invoice WHERE agreement_id = {agreement_id}",
+	"VIEW_RENTAL_INVOICE":			"SELECT * FROM rental_invoice WHERE invoice_id = [invoice_id}",
+	"LIST_":"",
+	"VIEW_":"",
+}
