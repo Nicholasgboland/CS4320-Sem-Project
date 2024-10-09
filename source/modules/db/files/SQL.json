@@ -8,5 +8,5 @@
 	"LIST_RENTAL_INVOICES":			"SELECT invoice_id, issue_date FROM rental_invoice WHERE agreement_id = {agreement_id}",
 	"VIEW_RENTAL_INVOICE":			"SELECT * FROM rental_invoice WHERE invoice_id = [invoice_id}",
 	"LIST_MAINT_RECORDS":			"SELECT maint_record_id, maint_record_date FROM maint_record WHERE property_id = {property_id} AND unit_id = {unit_id}",
-	"VIEW_MAINT_RECORDS":			"SELECT * FROM maint_record WHERE maint_record_id = {maint_record_id}",
+	"VIEW_MAINT_RECORDS":			"SELECT * FROM maint_record WHERE maint_record_id = {maint_record_id}"
 }
