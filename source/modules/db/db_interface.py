@@ -7,7 +7,7 @@ def initQueries():
         queryDict = json.load(queryFile)
     return queryDict
 
-def initDBInfo(userName, userPsswd):
+def initDBInfo():
     DBinfo = {}
     with open('modules/db/files/DB_config.json' 'r') as infile:
         dbParms = json.load(infile)
