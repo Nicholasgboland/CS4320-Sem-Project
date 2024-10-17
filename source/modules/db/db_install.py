@@ -12,10 +12,9 @@ def createDB():
                     cursor.executescript(sqlFile)
         except Error as e:
             print("Error: ", e)
-    return DBinfo
+            
+    with open('files/DB_config.json', 'w') as outfile:
+        jsonFile = json.dumps(DBinfo, indent=4)
+        outfile.write(jsonFile)
 
-DBparms = createDB()
-
-with open('files/DB_config.json', 'w') as outfile:
-    jsonFile = json.dumps(DBparms, indent=4)
-    outfile.write(jsonFile)
+createDB()
