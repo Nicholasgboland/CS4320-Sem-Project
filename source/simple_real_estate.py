@@ -26,4 +26,4 @@ elif len(args) == 2:
         install.createDB()
     elif args[1] == "-r":
         DBInfo, DBqueries = setup()
-        launch_management_screen(DBInfo, DBQueries)
+        launch_management_screen(DBInfo, DBqueries)
