@@ -27,7 +27,7 @@ def setParameters(key, value, parametersDict):
     return parametersDict
 
 def buildExecSQL(query, parametersDict):
-    execSQL = query.format(**parametersDict)
+    execSQL = query.format_map(parametersDict)
     return execSQL
 
 def execSQL(DBinfo, execSQL):
