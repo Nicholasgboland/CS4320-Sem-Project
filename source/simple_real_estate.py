@@ -8,7 +8,7 @@ def setup():
     queries = DB.initQueries()
     return DBInfo, queries
 
-def launch_management_screen(DBInfo):
+#def launch_management_screen(DBInfo):
     # Code to launch the initial GUI screen
 
 args = sys.argv
