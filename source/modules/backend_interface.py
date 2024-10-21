@@ -1,4 +1,5 @@
-import sqlite3, json, db
+import sqlite3, json
+from . import db
 from sqlite3 import Error
 from string import Formatter
 DB = db.db_interface
