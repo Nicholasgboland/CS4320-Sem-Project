@@ -23,4 +23,5 @@ def list_properties(DBInfo, parms):
   for key, value in parms:
     setParms = DB.setParameters(key, value, parms)
   sql = DB.buildExecSQL(query, setParms)
-  DB.execSQL(DBInfo, sql)
+  results = DB.execSQL(DBInfo, sql)
+  return results
