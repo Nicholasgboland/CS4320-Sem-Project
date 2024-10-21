@@ -3,17 +3,17 @@ from sqlite3 import Error
 from string import Formatter
 
 def createDB():
-    DBinfo = {"DB": 'files/init-db_real_estate.sql'}
-    with open('files/init-db_real_estate.sql') as infile:
+    DBinfo = {"DB": 'modules/db/files/real_estate.db'}
+    with open('modules/db/files/init-db_real_estate.sql') as infile:
         sqlFile = infile.read()
         try:
-            with sqlite3.connect('files/real_estate.db') as connection:
+            with sqlite3.connect(DBinfo["DB"]) as connection:
                 with connection.cursor() as cursor:
                     cursor.executescript(sqlFile)
         except Error as e:
             print("Error: ", e)
             
-    with open('files/DB_config.json', 'w') as outfile:
+    with open('modules/db/files/DB_config.json', 'w') as outfile:
         jsonFile = json.dumps(DBinfo, indent=4)
         outfile.write(jsonFile)
 
