@@ -1,3 +1,3 @@
-__all__ = ["db"]
+__all__ = ["db", "gui"]
 
-from . import db
+from . import db, gui

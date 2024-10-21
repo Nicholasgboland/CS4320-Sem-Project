@@ -1,3 +1,3 @@
-__all__ = ["db_interface"]
+__all__ = ["db_interface", "db_install"]
 
-from . import db_interface
+from . import db_interface, db_install
