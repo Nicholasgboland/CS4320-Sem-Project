@@ -20,8 +20,12 @@ REPORT_FIX_EXP = "REPORT_FIX_EXP"
 
 def list_properties(DBInfo, parms):
   query = DB.getQuery(LIST_PROPERTIES)
-  for key, value in parms:
-    setParms = DB.setParameters(key, value, parms)
-  sql = DB.buildExecSQL(query, setParms)
+  if parms is not None:
+    for key, value in parms:
+      setParms = DB.setParameters(key, value, parms)
+    sql = DB.buildExecSQL(query, setParms)
+  else:
+    setParms = None
+    sql = query
   results = DB.execSQL(DBInfo, sql)
   return results
