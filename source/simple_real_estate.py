@@ -13,7 +13,7 @@ def launch_management_screen(DBInfo, DBQueries):
     print("Launching...")
     ## End TODO
     ## TODO: Test Code
-    result = DB.list_properties(DBInfo, DBQueries)
+    result = DB.list_properties(DBInfo, None, DBQueries)
     print(result)
     ## End TODO
 
