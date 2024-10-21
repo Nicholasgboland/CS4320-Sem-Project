@@ -1,4 +1,4 @@
-import sqlit3, json
+import sqlite3, json
 from sqlit3 import Error
 from string import Formatter
 
