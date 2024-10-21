@@ -13,11 +13,10 @@ def launch_management_screen(DBInfo):
 
 args = sys.argv
 
-if len(args) != 0:
-    if len(args) > 1:
-        print("Too manay arguments given.\n")
-    else:
+if len(args) != 1:
+    print("Incorrect amount of arguments given.\n")
+    if args[1] == '-i':
         db.db_install.createDB()
-else:
-    DBInfo, DBqueries = setup()
-    launch_management_screen(DBInfo)
+    else if args[1] == '-r':
+        DBInfo, DBqueries = setup()
+        aunch_management_screen(DBInfo)
