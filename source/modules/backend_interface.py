@@ -18,7 +18,7 @@ LIST_EXP_RECORD_ITEMS = "LIST_EXP_RECORD_ITEMS"
 REPORT_VAR_EXP = "REPORT_VAR_EXP"
 REPORT_FIX_EXP = "REPORT_FIX_EXP"
 
-def list_properties(DBInfo, parms):
+def list_properties(DBInfo, parms, queryDict):
   query = DB.getQuery(LIST_PROPERTIES)
   if parms is not None:
     for key, value in parms:
