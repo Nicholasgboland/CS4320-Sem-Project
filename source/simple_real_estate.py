@@ -1,7 +1,7 @@
 import modules, sys
 from modules import db
-# from modules import db, gui
 DB = db.db_interface
+install = db.db_install
 
 def setup():
     DBInfo = DB.initDBInfo()
@@ -16,7 +16,7 @@ args = sys.argv
 if len(args) != 1:
     print("Incorrect amount of arguments given.\n")
     if args[1] == '-i':
-        db.db_install.createDB()
+        install..createDB()
     else if args[1] == '-r':
         DBInfo, DBqueries = setup()
-        aunch_management_screen(DBInfo)
+        launch_management_screen(DBInfo)
