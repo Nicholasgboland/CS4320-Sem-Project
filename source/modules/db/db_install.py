@@ -16,5 +16,3 @@ def createDB():
     with open('modules/db/files/DB_config.json', 'w') as outfile:
         jsonFile = json.dumps(DBinfo, indent=4)
         outfile.write(jsonFile)
-
-createDB()
