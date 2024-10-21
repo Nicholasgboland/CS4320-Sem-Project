@@ -29,3 +29,39 @@ def list_properties(DBInfo, parms):
     sql = query
   results = DB.execSQL(DBInfo, sql)
   return results
+
+def view_property(DBInfo, parms):
+  query = DB.getQuery(VIEW_PROPERTY)
+  if parms is not None:
+    for key, value in parms:
+      setParms = DB.setParameters(key, value, parms)
+    sql = DB.buildExecSQL(query, setParms)
+  else:
+    setParms = None
+    sql = query
+  results = DB.execSQL(DBInfo, sql)
+  return results
+
+def list_properties(DBInfo, parms):
+  query = DB.getQuery(LIST_PROPERTIES)
+  if parms is not None:
+    for key, value in parms:
+      setParms = DB.setParameters(key, value, parms)
+    sql = DB.buildExecSQL(query, setParms)
+  else:
+    setParms = None
+    sql = query
+  results = DB.execSQL(DBInfo, sql)
+  return results
+
+def list_properties(DBInfo, parms):
+  query = DB.getQuery(LIST_PROPERTIES)
+  if parms is not None:
+    for key, value in parms:
+      setParms = DB.setParameters(key, value, parms)
+    sql = DB.buildExecSQL(query, setParms)
+  else:
+    setParms = None
+    sql = query
+  results = DB.execSQL(DBInfo, sql)
+  return results
