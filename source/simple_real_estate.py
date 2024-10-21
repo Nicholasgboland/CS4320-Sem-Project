@@ -16,7 +16,7 @@ args = sys.argv
 if len(args) != 1:
     print("Incorrect amount of arguments given.\n")
     if args[1] == '-i':
-        install..createDB()
+        install.createDB()
     else if args[1] == '-r':
         DBInfo, DBqueries = setup()
         launch_management_screen(DBInfo)
