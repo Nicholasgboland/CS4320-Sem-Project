@@ -8,8 +8,9 @@ def createDB():
         sqlFile = infile.read()
         try:
             with sqlite3.connect(DBinfo["DB"]) as connection:
-                with connection.cursor() as cursor:
-                    cursor.executescript(sqlFile)
+                cursor = connection.cursor()
+                cursor.executescript(sqlFile)
+                cursor.close()
         except Error as e:
             print("Error: ", e)
             
