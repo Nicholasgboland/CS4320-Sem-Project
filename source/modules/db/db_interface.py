@@ -9,7 +9,7 @@ def initQueries():
 
 def initDBInfo():
     DBinfo = {}
-    with open('modules/db/files/DB_config.json' 'r') as infile:
+    with open('modules/db/files/DB_config.json', 'r') as infile:
         dbParms = json.load(infile)
         DBinfo["DB"] = dbParms["DB"]
     return DBinfo
