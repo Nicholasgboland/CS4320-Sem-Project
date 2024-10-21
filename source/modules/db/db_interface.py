@@ -33,9 +33,10 @@ def buildExecSQL(query, parametersDict):
 def execSQL(DBinfo, execSQL):
     try:
         with sqlite3.connect(DBinfo["DB"]) as connection:
-            with connection.cursor() as cursor:
-                cursor.execute(execSQL)
-                results = cursor.fetchall()
+            cursor = connection.cursor()
+            cursor.execute(execSQL)
+            results = cursor.fetchall()
+            cursor.close()
     except Error as e:
         print("Error: ", e)
     
