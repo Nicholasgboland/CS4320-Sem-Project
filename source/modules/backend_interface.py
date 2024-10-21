@@ -20,7 +20,7 @@ REPORT_VAR_EXP = "REPORT_VAR_EXP"
 REPORT_FIX_EXP = "REPORT_FIX_EXP"
 
 def list_properties(DBInfo, parms, queryDict):
-  query = DB.getQuery(LIST_PROPERTIES)
+  query = DB.getQuery(LIST_PROPERTIES, queryDict)
   if parms is not None:
     for key, value in parms:
       setParms = DB.setParameters(key, value, parms)
