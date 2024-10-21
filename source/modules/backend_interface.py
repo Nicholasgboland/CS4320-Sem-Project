@@ -20,7 +20,7 @@ REPORT_VAR_EXP = "REPORT_VAR_EXP"
 REPORT_FIX_EXP = "REPORT_FIX_EXP"
 
 def list_properties(DBInfo, parms, queryDict):
-  query = DB.getQuery(LIST_PROPERTIES, queryDict)
+  query, parmDict = DB.getQuery(LIST_PROPERTIES, queryDict)
   if parms is not None:
     for key, value in parms:
       setParms = DB.setParameters(key, value, parms)
@@ -30,33 +30,6 @@ def list_properties(DBInfo, parms, queryDict):
     sql = query
   results = DB.execSQL(DBInfo, sql)
   return results
-
-def view_property(DBInfo, parms):
-  query = DB.getQuery(VIEW_PROPERTY)
-  if parms is not None:
-    for key, value in parms:
-      setParms = DB.setParameters(key, value, parms)
-    sql = DB.buildExecSQL(query, setParms)
-  else:
-    setParms = None
-    sql = query
-  results = DB.execSQL(DBInfo, sql)
-  return results
-
-def list_properties(DBInfo, parms):
-  query = DB.getQuery(LIST_PROPERTIES)
-  if parms is not None:
-    for key, value in parms:
-      setParms = DB.setParameters(key, value, parms)
-    sql = DB.buildExecSQL(query, setParms)
-  else:
-    setParms = None
-    sql = query
-  results = DB.execSQL(DBInfo, sql)
-  return results
-
-def list_properties(DBInfo, parms):
-  query = DB.getQuery(LIST_PROPERTIES)
   if parms is not None:
     for key, value in parms:
       setParms = DB.setParameters(key, value, parms)
