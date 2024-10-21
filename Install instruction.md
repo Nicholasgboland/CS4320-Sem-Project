@@ -1,22 +1,17 @@
-# How to Install the Program
+# How to Install and Run the Program
 
 ## Requirements
 * Windows 10 / 11 Machine
+* Python3
 
-## Pre-requisites
+## Install Steps
 
-### PostgresSQL Install
-1) Download the software binaries, located at https://www.enterprisedb.com/downloads/postgres-postgresql-downloads
+1) Download the most current release
    * Select ``` Windows x86-64 ``` for version 17.0+
-2) Launch the installer wizard, and click ``` Next ```
-3) Specify installtion directory, make note of this in the provided ``` DB_config.json ``` file
-   * Click ``` Next ```
-4) Select ``` PostgreSQL Server ```
-   * Click ``` Next ```
-5) Specify the data directory to store the database data (recomend: ''), make note of this in the provided ``` DB_config.JSON ``` file
-   * Click ``` Next ```
-6) Specify the admin password for the ``` postgres ``` user, remember this password as it will be needed later
-   * Click ``` Next ```
-7) Specify a port number on which the PostgreSQL database server will listen, default is ``` 5432 ```
-   * Click ``` Next ```
-8) Leave the locale as the default locale, click ``` Next ```
+2) Extract the release in desired directory
+3) Run the installer
+   * In the release's source directory, run the following command:
+     * python3 simple_real_estate.py -i
+
+4) The program is now installed and ready to run, which can be done by the following command:
+   * python3 simple_real_estate.py -r
