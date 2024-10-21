@@ -35,9 +35,11 @@ def execSQL(DBinfo, execSQL):
         with sqlite3.connect(DBinfo["DB"]) as connection:
             cursor = connection.cursor()
             cursor.execute(execSQL)
-            results = cursor.fetchall()
+            rows = cursor.fetchall()
             cursor.close()
     except Error as e:
         print("Error: ", e)
+
+    results = [dict(zip([column[0] for column in cursor.description], row)) for row in rows]
     
     return results
