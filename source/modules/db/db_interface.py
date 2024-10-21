@@ -1,5 +1,5 @@
 import sqlite3, json
-from sqlit3 import Error
+from sqlite3 import Error
 from string import Formatter
 
 def initQueries():
