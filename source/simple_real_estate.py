@@ -8,9 +8,14 @@ def setup():
     queries = DB.initQueries()
     return DBInfo, queries
 
-def launch_management_screen(DBInfo):
-    # Code to launch the initial GUI screen
+def launch_management_screen(DBInfo, DBQueries):
+    ## TODO: Code to launch the initial GUI screen
     print("Launching...")
+    ## End TODO
+    ## TODO: Test Code
+    result = DB.list_properties(DBInfo, DBQueries)
+    print(result)
+    ## End TODO
 
 args = sys.argv
 
@@ -21,4 +26,4 @@ elif len(args) == 2:
         install.createDB()
     elif args[1] == "-r":
         DBInfo, DBqueries = setup()
-        launch_management_screen(DBInfo)
+        launch_management_screen(DBInfo, DBQueries)
