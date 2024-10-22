@@ -20,7 +20,14 @@ def getQuery(queryName, queryDict):
     parametersDict = {}
     for param in parameters:
         parametersDict[param] = "NULL"
-    return query, parametersDict
+    return query
+
+def initParmDict(query):
+    parameters = [pname for _, pname, _, _ in Formatter().parse(query) if pname]
+    parametersDict = {}
+    for param in parameters:
+        parametersDict[param] = "NULL"
+    return parametersDict
 
 def setParameters(key, value, parametersDict):
     parametersDict[key] = "'" + value + "'"
