@@ -19,12 +19,11 @@ LIST_EXP_RECORD_ITEMS    = "LIST_EXP_RECORD_ITEMS"
 REPORT_VAR_EXP           = "REPORT_VAR_EXP"
 REPORT_FIX_EXP           = "REPORT_FIX_EXP"
 
+## No paramters
 def init_list_properties(DBInfo, queryDict):
   query = DB.getQuery(LIST_PROPERTIES, queryDict)
   return query, parms
-
-def list_properties(DBInfo, parms, queryDict):
-  query = DB.getQuery(LIST_PROPERTIES, queryDict)
+def list_properties(DBInfo, parms, query):
   if parms is not None:
     for key, value in parms:
       setParms = DB.setParameters(key, value, parms)
@@ -34,8 +33,48 @@ def list_properties(DBInfo, parms, queryDict):
   results = DB.execSQL(DBInfo, sql)
   return results
 
+## Parameters: {property_id}
 def init_view_property(DBInfo, queryDict):
   query = DB.getQuery(VIEW_PROPERTY, queryDict)
   parms = DB.initParmDict(query)
   return query, parms
+def view_property(DBInfo, parms, query):
+  if parms is not None:
+    for key, value in parms:
+      setParms = DB.setParameters(key, value, parms)
+    sql = DB.buildExecSQL(query, setParms)
+  else:
+    sql = query
+  results = DB.execSQL(DBInfo, sql)
+  return results
+
+## Parameters: {property_id}
+def init_list_units(DBInfo, queryDict):
+  query = DB.getQuery(LIST_UNITS, queryDict)
+  parms = DB.initParmDict(query)
+  return query, parms
+def list_unit(DBInfo, parms, query):
+  if parms is not None:
+    for key, value in parms:
+      setParms = DB.setParameters(key, value, parms)
+    sql = DB.buildExecSQL(query, setParms)
+  else:
+    sql = query
+  results = DB.execSQL(DBInfo, sql)
+  return results
+
+## Parameters: {property_id}, {unit_id}
+def init_view_unit(DBInfo, queryDict):
+  query = DB.getQuery(VIEW_UNIT, queryDict)
+  parms = DB.initParmDict(query)
+  return query, parms
+def view_unit(DBInfo, parms, query):
+  if parms is not None:
+    for key, value in parms:
+      setParms = DB.setParameters(key, value, parms)
+    sql = DB.buildExecSQL(query, setParms)
+  else:
+    sql = query
+  results = DB.execSQL(DBInfo, sql)
+  return results
   
