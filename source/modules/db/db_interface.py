@@ -16,10 +16,6 @@ def initDBInfo():
 
 def getQuery(queryName, queryDict):
     query = queryDict[queryName]
-    parameters = [pname for _, pname, _, _ in Formatter().parse(query) if pname]
-    parametersDict = {}
-    for param in parameters:
-        parametersDict[param] = "NULL"
     return query
 
 def initParmDict(query):
