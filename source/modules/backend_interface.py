@@ -79,12 +79,27 @@ def view_unit(DBInfo, parms, query):
   results = DB.execSQL(DBInfo, sql)
   return results
 
-## Parameters: 
+## Parameters: {property_id}, {unit_id}
 def init_list_rental_agreements(DBInfo, queryDict):
   query = DB.getQuery(VIEW_UNIT, queryDict)
   parms = DB.initParmDict(query)
   return query, parms
 def list_rental_agreements(DBInfo, parms, query):
+  if parms is not None:
+    for key, value in parms:
+      setParms = DB.setParameters(key, value, parms)
+    sql = DB.buildExecSQL(query, setParms)
+  else:
+    sql = query
+  results = DB.execSQL(DBInfo, sql)
+  return results
+  
+## Parameters: {agreement_id}
+def init_view_rental_agreement(DBInfo, queryDict):
+  query = DB.getQuery(VIEW_UNIT, queryDict)
+  parms = DB.initParmDict(query)
+  return query, parms
+def list_view_agreement(DBInfo, parms, query):
   if parms is not None:
     for key, value in parms:
       setParms = DB.setParameters(key, value, parms)
