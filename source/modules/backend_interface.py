@@ -22,6 +22,7 @@ REPORT_FIX_EXP           = "REPORT_FIX_EXP"
 ## No paramters
 def init_list_properties(DBInfo, queryDict):
   query = DB.getQuery(LIST_PROPERTIES, queryDict)
+  parms = None
   return query, parms
 def list_properties(DBInfo, parms, query):
   if parms is not None:
@@ -69,6 +70,21 @@ def init_view_unit(DBInfo, queryDict):
   parms = DB.initParmDict(query)
   return query, parms
 def view_unit(DBInfo, parms, query):
+  if parms is not None:
+    for key, value in parms:
+      setParms = DB.setParameters(key, value, parms)
+    sql = DB.buildExecSQL(query, setParms)
+  else:
+    sql = query
+  results = DB.execSQL(DBInfo, sql)
+  return results
+
+## Parameters: 
+def init_list_rental_agreements(DBInfo, queryDict):
+  query = DB.getQuery(VIEW_UNIT, queryDict)
+  parms = DB.initParmDict(query)
+  return query, parms
+def list_rental_agreements(DBInfo, parms, query):
   if parms is not None:
     for key, value in parms:
       setParms = DB.setParameters(key, value, parms)
