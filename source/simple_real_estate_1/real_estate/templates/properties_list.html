@@ -1,0 +1,33 @@
+{% extends 'nav_bar.html' %}
+{% block content%}
+<center><h1>Properties</h1></center>
+{% if properties %}
+<ul>
+    
+    {% for property in properties %}
+    <div class="container pt-1 my-5" style="border: 3px solid black;">
+    <h2>Property</h2>
+
+    <a style="display: inline-block; width: 100%; text-align: left;">
+        <span style="float: left;">{{ property.name }}</span>
+        <span style="float: right;">Link to Units</span>
+      </a>
+      
+      <a style="display: inline-block; width: 100%; text-align: left;">
+        <span style="float: left;">{{ property.street_addr }}</span>
+        <span style="float: right;">Button for records</span>
+      </a>
+
+      <a style="display: inline-block; width: 100%; text-align: left;">
+        <span style="float: left;">{{ property.city }}, {{property.state_abrv}}, {{property.zip}}</span>
+        <span style="float: right;"><button class="btn btn-primary">View/Update</button>            <button class="btn btn-warning">Button to Delete</button></span>
+      </a>
+
+    
+    </div>
+    {% endfor%}
+</ul>
+{% else %}
+<p> There are no Properties </p>
+{% endif %}
+{% endblock %}
