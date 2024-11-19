@@ -35,29 +35,12 @@
              <!-- Need to change the url below-->
              <a class="nav-link active" aria-current="page" href="{% url 'properties_list' %}">Properties</a> 
            
-             <div class = "page-add-button">
-              <center>
-              <!-- Need to change the paths -->
-               {% if request.path == '/properties/' %}
-               <p><a href = "{% url 'property_form' %}" class = "btn btn-primary" >Create New Property Button  </a> </p>
-                  
-                {% endif %}
-                {% if request.path == '/maintence_records/' %}
-               <p><a href = "{% url 'maintence_form' %}" class = "btn btn-primary" >Create New Record Button  </a> </p>
-                  
-                {% endif %}
-              </center>
-               </div>
-             
-
            </div>
           
          </div>
          
        </div>
      </nav>
-
-
        <div class="col-sm-10">
          <!-- add block content from html template -->
          {% block content %}

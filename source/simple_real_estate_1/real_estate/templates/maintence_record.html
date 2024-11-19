@@ -1,11 +1,23 @@
 {% extends 'nav_bar.html' %}
 {% block content%}
-<center><h1>Maintence Record</h1></center>
-{% if records %}
+<div class="container-fluid">
+<center><h1>Maintenance Records</h1></center>
+           <div class="buttons">
+             <div class = "page-add-button">
+              <center>
+              <!-- Need to change the paths -->
+               <p><a href = "{% url 'maintence_form' %}" class = "btn btn-primary" >Add New Maintenance Record  </a> </p>
+              </center>
+            </div>
+           </div>
 
+       </div>
+       </div>
+{% if records %}
 {% for record in records %}
     <div class="container pt-1 my-5" style="border: 3px solid black;">
     <h2>Record</h2>
+    <p>{{record.maint_record_date}}</p>
     <a>{{record.notes}}</a>
     
      

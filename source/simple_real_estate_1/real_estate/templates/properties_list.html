@@ -1,6 +1,19 @@
 {% extends 'nav_bar.html' %}
 {% block content%}
+<div class="container-fluid">
 <center><h1>Properties</h1></center>
+           <div class="buttons">
+             <div class = "page-add-button">
+              <center>
+              <!-- Need to change the paths -->
+               <p><a href = "{% url 'property_form' %}" class = "btn btn-primary" >Add New Property  </a> </p>
+              </center>
+            </div>
+           </div>
+
+       </div>
+       </div>
+
 {% if properties %}
 <ul>
     
@@ -22,7 +35,7 @@
 
       <a style="display: inline-block; width: 100%; text-align: left;">
         <span style="float: left;">{{ property.city }}, {{property.state_abrv}}, {{property.zip}}</span>
-        <span style="float: right;"><button class="btn btn-primary">View/Update</button>            <button class="btn btn-danger">Button to Delete</button></span>
+        <span style="float: right;"><button class="btn btn-primary">View/Update Property</button>            <button class="btn btn-danger">Delete Property</button></span>
       </a>
      
     
