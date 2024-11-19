@@ -8,22 +8,22 @@ from django.db import models
 from django.urls import reverse
 from django.views import generic
 
-class ExpenseRecord(models.Model):
-    expense_record_id = models.BigAutoField(primary_key=True)
-    expense_report_date = models.DateField()
-    property = models.ForeignKey('Property', models.DO_NOTHING)
-    unit = models.ForeignKey('Unit', models.DO_NOTHING, blank=True, null=True)
-    expense_total = models.TextField()  # This field type is a guess.
-    notes = models.TextField(null=True)
+#class ExpenseRecord(models.Model):
+ #   expense_record_id = models.BigAutoField(primary_key=True)
+  #  expense_report_date = models.DateField()
+   # property = models.ForeignKey('Property', models.DO_NOTHING)
+   # unit = models.ForeignKey('Unit', models.DO_NOTHING, blank=True, null=True)
+    #expense_total = models.TextField()  # This field type is a guess.
+    #notes = models.TextField(null=True)
 
-    class Meta:
-        managed = False
-        db_table = 'expense_record'
+    #class Meta:
+     #   managed = False
+      #  db_table = 'expense_record'
 
 
 class ExpenseRecordItem(models.Model):
     expense_item_id = models.BigAutoField(primary_key=True)
-    expense_record = models.ForeignKey(ExpenseRecord, models.DO_NOTHING)
+    #expense_record = models.ForeignKey(ExpenseRecord, models.DO_NOTHING)
     expense_item_name = models.TextField()
     expense_item_cost = models.TextField(blank=True, null=True)  # This field type is a guess.
     expense_type = models.TextField()
@@ -31,7 +31,7 @@ class ExpenseRecordItem(models.Model):
     notes = models.TextField(null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'expense_record_item'
 
 
@@ -42,7 +42,7 @@ class MaintQuote(models.Model):
     quote_total = models.TextField()  # This field type is a guess.
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'maint_quote'
 
 
@@ -55,7 +55,7 @@ class MaintQuoteInvoice(models.Model):
     notes = models.TextField(null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'maint_quote_invoice'
 
 
@@ -66,19 +66,19 @@ class MaintQuoteItem(models.Model):
     quote_item_cost = models.TextField(blank=True, null=True)  # This field type is a guess.
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'maint_quote_item'
 
 
 class MaintRecord(models.Model):
     maint_record_id = models.BigAutoField(primary_key=True)
     maint_record_date = models.DateField()
-    property = models.ForeignKey('Property', models.DO_NOTHING)
+    property = models.ForeignKey('Property', models.DO_NOTHING, null=True)
     unit = models.ForeignKey('Unit', models.DO_NOTHING, blank=True, null=True)
     notes = models.TextField(null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'maint_record'
 
 
@@ -89,7 +89,7 @@ class MaintRecordItem(models.Model):
     notes = models.TextField(null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'maint_record_item'
 
 
@@ -110,7 +110,7 @@ class Property(models.Model):
     notes = models.TextField(null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'property'
 class PropertyListView(generic.ListView):
     model = Property
@@ -132,7 +132,7 @@ class RentalAgreement(models.Model):
     last_increase = models.DateField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'rental_agreement'
 
 
@@ -147,7 +147,7 @@ class RentalInvoice(models.Model):
     notes = models.TextField(null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'rental_invoice'
 
 
@@ -159,7 +159,7 @@ class Tenant(models.Model):
     notes = models.TextField(null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'tenant'
 
 
@@ -173,5 +173,5 @@ class Unit(models.Model):
     notes = models.TextField(null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'unit'

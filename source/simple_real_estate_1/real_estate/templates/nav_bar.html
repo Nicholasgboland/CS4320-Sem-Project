@@ -42,6 +42,10 @@
                <p><a href = "{% url 'property_form' %}" class = "btn btn-primary" >Create New Property Button  </a> </p>
                   
                 {% endif %}
+                {% if request.path == '/maintence_records/' %}
+               <p><a href = "{% url 'maintence_form' %}" class = "btn btn-primary" >Create New Record Button  </a> </p>
+                  
+                {% endif %}
               </center>
                </div>
              

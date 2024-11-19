@@ -23,3 +23,22 @@ def createProperty(request):
     
     context = {'form': form}
     return render(request, 'create_property.html', context)
+
+
+def maintence_record(request):
+    records = MaintRecord.objects.all()
+    return render(request, 'maintence_record.html', {'records':records})
+
+def createMaintenceRecord(request):
+    if request.method == 'POST':
+        form = MaintencRecordForm(request.POST)
+        if form.is_valid():
+            record = form.save(commit=False)  
+            
+            record.save()  
+            return redirect('maintence_records')
+    else:
+        form = MaintencRecordForm()  
+    
+    context = {'form': form}
+    return render(request, 'create_maintence_record.html', context)

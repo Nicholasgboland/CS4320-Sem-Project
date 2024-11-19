@@ -1,0 +1,23 @@
+{% extends 'nav_bar.html' %}
+{% block content%}
+<center><h1>Maintence Record</h1></center>
+{% if records %}
+
+{% for record in records %}
+    <div class="container pt-1 my-5" style="border: 3px solid black;">
+    <h2>Record</h2>
+    <a>{{record.notes}}</a>
+    
+     
+    
+    </div>
+    {% endfor%}
+</ul>
+
+
+{% else %}
+<p> There are no records </p>
+{% endif %}
+{% endblock %}
+
+

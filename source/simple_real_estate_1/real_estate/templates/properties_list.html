@@ -15,14 +15,16 @@
       
       <a style="display: inline-block; width: 100%; text-align: left;">
         <span style="float: left;">{{ property.street_addr }}</span>
-        <span style="float: right;">Button for records</span>
-      </a>
+        <span style="cursor: pointer; color: blue; float: right" onclick="window.location.href='{% url 'maintence_records' %}'">Maintence</span>
+
+    </a>
+    
 
       <a style="display: inline-block; width: 100%; text-align: left;">
         <span style="float: left;">{{ property.city }}, {{property.state_abrv}}, {{property.zip}}</span>
-        <span style="float: right;"><button class="btn btn-primary">View/Update</button>            <button class="btn btn-warning">Button to Delete</button></span>
+        <span style="float: right;"><button class="btn btn-primary">View/Update</button>            <button class="btn btn-danger">Button to Delete</button></span>
       </a>
-
+     
     
     </div>
     {% endfor%}

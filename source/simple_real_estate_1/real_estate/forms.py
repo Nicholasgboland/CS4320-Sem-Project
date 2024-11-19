@@ -9,4 +9,7 @@ class Propertyform(ModelForm):
                   'county', 'state_abrv', 'zip', 
                   'purchase_date', 'sqr_ft', 'price_per_sqqr_ft',
                  'purchase_price',  'market_price', 'num_of_units', 'notes')
-        
+class MaintencRecordForm(ModelForm):
+    class Meta:
+        model = MaintRecord
+        fields = ('maint_record_date', 'property', 'unit', 'notes')
