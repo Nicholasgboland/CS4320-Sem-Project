@@ -8,22 +8,22 @@ from django.db import models
 from django.urls import reverse
 from django.views import generic
 
-#class ExpenseRecord(models.Model):
- #   expense_record_id = models.BigAutoField(primary_key=True)
-  #  expense_report_date = models.DateField()
-   # property = models.ForeignKey('Property', models.DO_NOTHING)
-   # unit = models.ForeignKey('Unit', models.DO_NOTHING, blank=True, null=True)
-    #expense_total = models.TextField()  # This field type is a guess.
-    #notes = models.TextField(null=True)
+class ExpenseRecord(models.Model):
+    expense_record_id = models.BigAutoField(primary_key=True)
+    expense_report_date = models.DateField()
+    property = models.ForeignKey('Property', models.DO_NOTHING)
+    unit = models.ForeignKey('Unit', models.DO_NOTHING, blank=True, null=True)
+    expense_total = models.TextField()  # This field type is a guess.
+    notes = models.TextField(null=True)
 
-    #class Meta:
-     #   managed = False
-      #  db_table = 'expense_record'
+    class Meta:
+        managed = True
+        db_table = 'expense_record'
 
 
 class ExpenseRecordItem(models.Model):
     expense_item_id = models.BigAutoField(primary_key=True)
-    #expense_record = models.ForeignKey(ExpenseRecord, models.DO_NOTHING)
+    expense_record = models.ForeignKey(ExpenseRecord, models.DO_NOTHING)
     expense_item_name = models.TextField()
     expense_item_cost = models.TextField(blank=True, null=True)  # This field type is a guess.
     expense_type = models.TextField()

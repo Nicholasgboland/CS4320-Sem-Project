@@ -35,7 +35,7 @@
 
       <a style="display: inline-block; width: 100%; text-align: left;">
         <span style="float: left;">{{ property.city }}, {{property.state_abrv}}, {{property.zip}}</span>
-        <span style="float: right;"><button class="btn btn-primary">View/Update Property</button>            <button class="btn btn-danger">Delete Property</button></span>
+        <span style="float: right;"><button class="btn btn-primary">View/Update Property</button>            <a class="btn btn-danger" href = "{% url 'delete_property' property.property_id %}">Delete Property</a></span>
       </a>
      
     

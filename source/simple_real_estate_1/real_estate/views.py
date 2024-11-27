@@ -42,3 +42,20 @@ def createMaintenceRecord(request):
     
     context = {'form': form}
     return render(request, 'create_maintence_record.html', context)
+
+
+
+def delete_property(request, pk):
+   property = Property.objects.get(pk=pk)
+   if request.method == 'POST':
+      try:
+         print("got id")
+         
+         
+         property.delete()
+         return redirect('properties_list')
+      except Property.DoesNotExist:
+            # Handle the case where the project does not exist
+        print("does not exist")
+        return redirect('properties_list')  # Redirect to an appropriate page
+   return render(request, 'delete_property.html', {'property':property})

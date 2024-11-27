@@ -22,10 +22,11 @@ urlpatterns = [
     path('', views.index, name='index'),
     #path('', views.index, name='login'),
     path('properties/', views.properties, name = 'properties_list'),
+    path('property/<int:pk>/delete/', views.delete_property, name='delete_property'),
     #path('properties/', views.PropertyListView.as_view(), name = 'properties_list.html'),
     path('properties/property_form/', views.createProperty, name = 'property_form'),
     
-    path('/maintence_form/', views.createMaintenceRecord, name = 'maintence_form'),
+    path('maintence_form/', views.createMaintenceRecord, name = 'maintence_form'),
 
 
     path('maintence_records/', views.maintence_record, name = 'maintence_records'),
