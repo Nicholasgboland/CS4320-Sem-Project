@@ -1,0 +1,32 @@
+{% extends 'nav_bar.html' %}
+{% block content%}
+<div class="container-fluid">
+<center><h1>Tenants</h1></center>
+           <div class="buttons">
+             <div class = "page-add-button">
+              <center>
+              <!-- Need to change the paths -->
+               <p><a href = "{% url 'tenant_form' %}" class = "btn btn-primary" >Add New Tenant  </a> </p>
+              </center>
+            </div>
+           </div>
+
+       </div>
+       </div>
+{% if tenants %}
+<ul>
+    
+    {% for tenant in tenants %}
+    <div class="container pt-1 my-5" style="border: 3px solid black;">
+    <h2>Tenant</h2>
+    <a>{{tenant.name}}</a>
+    <a>{{tenant.phone}}</a>
+    <a>{{tenant.email}}</a>
+    <p><a>{{tenant.notes}}</a></p>
+    </div>
+    {% endfor%}
+</ul>
+{% else %}
+<p> There are no Tenants </p>
+{% endif %}
+{% endblock %}

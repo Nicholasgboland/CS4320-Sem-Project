@@ -22,12 +22,26 @@ urlpatterns = [
     path('', views.index, name='index'),
     #path('', views.index, name='login'),
     path('properties/', views.properties, name = 'properties_list'),
+    path('property/update/<int:pk>/', views.updateProperty, name='update_property'),
     path('property/<int:pk>/delete/', views.delete_property, name='delete_property'),
-    #path('properties/', views.PropertyListView.as_view(), name = 'properties_list.html'),
     path('properties/property_form/', views.createProperty, name = 'property_form'),
     
-    path('maintence_form/', views.createMaintenceRecord, name = 'maintence_form'),
+    path('properties/<int:pk>/units/', views.units, name = 'units_list'),
+    path('properties/unit_form/', views.createUnit, name = 'unit_form'),
 
 
-    path('maintence_records/', views.maintence_record, name = 'maintence_records'),
+     path('properties/units/<int:pk>/rental_agreement', views.rentalAgreement, name = 'rental_agreement_list'),
+    path('properties/units/rental_agreement_form/<int:pk>', views.createRentalAgreement, name = 'rental_agreement_form'),
+
+
+    path('tenants/', views.tenant, name = 'tenant_list'),
+    path('tenants/tenate_form/', views.createTenant, name = 'tenant_form' ),
+
+
+
+
+    path('maintence_form/<int:pk>', views.createMaintenceRecord, name = 'maintence_form'),
+
+
+    path('maintence_records/<int:pk>', views.maintence_record, name = 'maintence_records'),
 ]

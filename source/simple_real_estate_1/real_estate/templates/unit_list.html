@@ -1,35 +1,29 @@
 {% extends 'nav_bar.html' %}
 {% block content%}
 <div class="container-fluid">
-<center><h1>Maintenance Records</h1></center>
+<center><h1>Units</h1></center>
            <div class="buttons">
              <div class = "page-add-button">
               <center>
               <!-- Need to change the paths -->
-               <p><a href = "{% url 'maintence_form' pk %}" class = "btn btn-primary" >Add New Maintenance Record  </a> </p>
+               <p><a href = "{% url 'unit_form' %}" class = "btn btn-primary" >Add New Unit  </a> </p>
               </center>
             </div>
            </div>
 
        </div>
        </div>
-{% if records %}
-{% for record in records %}
+
+{% if units %}
+{% for unit in units %}
     <div class="container pt-1 my-5" style="border: 3px solid black;">
-    <h2>Record</h2>
-    <a>{{record.maint_record_date}}
-    <a>{{record.notes}}</a>
-    
-     
-    
+    <h2>Unit</h2>
+    <a>{{unit.name}}</a>
+    <a>{{unit.unit_number}}</a>
+    <a class="btn btn-primary" href = "{% url 'rental_agreement_list' unit.unit_id %}">Rental Agreement</a>
     </div>
     {% endfor%}
-</ul>
-
-
-{% else %}
-<p> There are no records </p>
+    {% else %}
+<p> There are no Units </p>
 {% endif %}
 {% endblock %}
-
-

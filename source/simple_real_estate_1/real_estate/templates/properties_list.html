@@ -23,19 +23,21 @@
 
     <a style="display: inline-block; width: 100%; text-align: left;">
         <span style="float: left;">{{ property.name }}</span>
-        <span style="float: right;">Link to Units</span>
+        <a class="btn btn-primary" href = "{% url 'units_list' property.property_id %}">Units</a>
       </a>
       
       <a style="display: inline-block; width: 100%; text-align: left;">
         <span style="float: left;">{{ property.street_addr }}</span>
-        <span style="cursor: pointer; color: blue; float: right" onclick="window.location.href='{% url 'maintence_records' %}'">Maintence</span>
-
+        <!--
+      
+        -->
+        <a class="btn btn-primary" href = "{% url 'maintence_records' property.property_id %}">Maintence Records</a>
     </a>
     
 
       <a style="display: inline-block; width: 100%; text-align: left;">
         <span style="float: left;">{{ property.city }}, {{property.state_abrv}}, {{property.zip}}</span>
-        <span style="float: right;"><button class="btn btn-primary">View/Update Property</button>            <a class="btn btn-danger" href = "{% url 'delete_property' property.property_id %}">Delete Property</a></span>
+        <span style="float: right;"><a class="btn btn-primary" href = "{% url 'update_property' property.property_id %}">View//Update Property</a>            <a class="btn btn-danger" href = "{% url 'delete_property' property.property_id %}">Delete Property</a></span>
       </a>
      
     

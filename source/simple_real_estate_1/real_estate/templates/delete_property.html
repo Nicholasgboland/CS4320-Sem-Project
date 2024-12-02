@@ -1,7 +1,7 @@
 {% extends 'nav_bar.html' %}
 {% block content%}
 
-<h2>Confirm deletion of project "{{ property.name }}"</h2>
+<h2>Confirm deletion of property "{{ property.name }}"</h2>
 
 <form method="post">
     {% csrf_token %}
