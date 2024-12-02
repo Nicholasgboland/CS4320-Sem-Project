@@ -1,18 +1,7 @@
 {% extends 'nav_bar.html' %}
 {% block content%}
 <div class="container-fluid">
-<center><h1>Rental Agreement</h1></center>
-           <div class="buttons">
-             <div class = "page-add-button">
-              <center>
-              <!-- Need to change the paths -->
-               
-              </center>
-            </div>
-           </div>
 
-       </div>
-       </div>
 {% if rent %}
 {% for agree in rent %}
     <div class="container pt-1 my-5" style="border: 3px solid black;">
@@ -24,6 +13,7 @@
     <p>{{agree.payment_sched}}</p>
     <p>Next Increase: {{agree.next_increase}}</p>
     <p>Last Increase: {{agree.last_increase}}</p>
+    <p><a href = "{% url 'rental_invoice_list' agree.tenant.tenant_id %}" class = "btn btn-primary" >Rental Invoice</a> </p>
     {% endfor%}
 </ul>
 

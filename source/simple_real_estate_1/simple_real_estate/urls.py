@@ -30,8 +30,12 @@ urlpatterns = [
     path('properties/unit_form/', views.createUnit, name = 'unit_form'),
 
 
-     path('properties/units/<int:pk>/rental_agreement', views.rentalAgreement, name = 'rental_agreement_list'),
+    path('properties/units/<int:pk>/rental_agreement', views.rentalAgreement, name = 'rental_agreement_list'),
     path('properties/units/rental_agreement_form/<int:pk>', views.createRentalAgreement, name = 'rental_agreement_form'),
+
+
+    path('properties/units/rental_agreement/<int:pk>/rental_invoice', views.rentalInvoice, name = 'rental_invoice_list'),
+
 
 
     path('tenants/', views.tenant, name = 'tenant_list'),

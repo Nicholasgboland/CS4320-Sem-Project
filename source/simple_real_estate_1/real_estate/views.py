@@ -93,7 +93,7 @@ def createTenant(request):
 
 
 def rentalAgreement(request, pk):
-    rent = RentalAgreement.objects.all().filter(unit_id =pk)
+    rent = RentalAgreement.objects.all().filter(unit_id =pk, active = True)
     return render(request, 'rental_aggrement.html', {'rent':rent, 'pk':pk})
 
 def createRentalAgreement(request, pk):
@@ -111,6 +111,25 @@ def createRentalAgreement(request, pk):
     
     context = {'form': form}
     return render(request, 'create_rental_agreement.html', context)
+
+def rentalInvoice(request, pk):
+    rent = RentalInvoice.objects.all().filter(tenant = pk)
+    return render(request, 'rental_invoice_list.html', {'rent':rent})
+
+def createRentalInvoice(request, pk):
+    if request.method == 'POST':
+        form = MaintencRecordForm(request.POST)
+        if form.is_valid():
+            record = form.save(commit=False)  
+            
+            record.save()  
+            return redirect('maintence_records', pk=pk)
+    else:
+        form = MaintencRecordForm()  
+    
+    context = {'form': form}
+    return render(request, 'create_maintence_record.html', context)
+
 
 def maintence_record(request, pk):
     #property = Property.objects.get(property_id = pk)

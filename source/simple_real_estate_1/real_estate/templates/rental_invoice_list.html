@@ -1,0 +1,27 @@
+{% extends 'nav_bar.html' %}
+{% block content%}
+<div class="container-fluid">
+<center><h1>Rental Invoice</h1></center>
+           <div class="buttons">
+             <div class = "page-add-button">
+              <center>
+              
+               <p><a href = "{% url 'unit_form' %}" class = "btn btn-primary" >Add New Invoice  </a> </p>
+              </center>
+            </div>
+           </div>
+
+       </div>
+       </div>
+
+{% if rent %}
+{% for invoice in rent %}
+    <div class="container pt-1 my-5" style="border: 3px solid black;">
+    <h2>Invoice</h2>
+   
+    </div>
+    {% endfor%}
+    {% else %}
+<p> There are no Invoices </p>
+{% endif %}
+{% endblock %}
