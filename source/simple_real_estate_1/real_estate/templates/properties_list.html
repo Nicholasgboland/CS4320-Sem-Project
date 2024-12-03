@@ -1,0 +1,50 @@
+{% extends 'nav_bar.html' %}
+{% block content%}
+<div class="container-fluid">
+<center><h1>Properties</h1></center>
+           <div class="buttons">
+             <div class = "page-add-button">
+              <center>
+              <!-- Need to change the paths -->
+               <p><a href = "{% url 'property_form' %}" class = "btn btn-primary" >Add New Property  </a> </p>
+              </center>
+            </div>
+           </div>
+
+       </div>
+       </div>
+
+{% if properties %}
+<ul>
+    
+    {% for property in properties %}
+    <div class="container pt-1 my-5" style="border: 3px solid black;">
+    <h2>Property</h2>
+
+    <a style="display: inline-block; width: 100%; text-align: left;">
+        <span style="float: left;">{{ property.name }}</span>
+        <a class="btn btn-primary" href = "{% url 'units_list' property.property_id %}">Units</a>
+      </a>
+      
+      <a style="display: inline-block; width: 100%; text-align: left;">
+        <span style="float: left;">{{ property.street_addr }}</span>
+        <!--
+      
+        -->
+        <a class="btn btn-primary" href = "{% url 'maintence_records' property.property_id %}">Maintence Records</a>
+    </a>
+    
+
+      <a style="display: inline-block; width: 100%; text-align: left;">
+        <span style="float: left;">{{ property.city }}, {{property.state_abrv}}, {{property.zip}}</span>
+        <span style="float: right;"><a class="btn btn-primary" href = "{% url 'update_property' property.property_id %}">View//Update Property</a>            <a class="btn btn-danger" href = "{% url 'delete_property' property.property_id %}">Delete Property</a></span>
+      </a>
+     
+    
+    </div>
+    {% endfor%}
+</ul>
+{% else %}
+<p> There are no Properties </p>
+{% endif %}
+{% endblock %}

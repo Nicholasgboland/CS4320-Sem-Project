@@ -1,0 +1,25 @@
+{% extends 'nav_bar.html' %}
+{% block content%}
+<div class="container-fluid">
+
+{% if rent %}
+{% for agree in rent %}
+    <div class="container pt-1 my-5" style="border: 3px solid black;">
+    <h2>Rental Agreement</h2>
+    <p>{{agree.contract_num}}</p>
+    <p>{{agree.contract_docs}}</p>
+    <p>{{agree.tenant.name}}</p>
+    <p>{{agree.start_date}} - {{agree.end_date}}</p>
+    <p>{{agree.curr_rent}}</p>
+    <p>{{agree.payment_sched}}</p>
+    <p>Next Increase: {{agree.next_increase}}</p>
+    <p>Last Increase: {{agree.last_increase}}</p>
+    <p><a href = "{% url 'rental_invoice_list' agree.tenant.tenant_id %}" class = "btn btn-primary" >Rental Invoice</a> </p>
+    {% endfor%}
+</ul>
+
+
+{% else %}
+<p><a href = "{% url 'rental_agreement_form' pk %}" class = "btn btn-primary" >Add Rental Agreement</a> </p>
+{% endif %}
+{% endblock %}

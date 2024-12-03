@@ -1,0 +1,34 @@
+{% extends 'nav_bar.html' %}
+{% block content%}
+<div class="container-fluid">
+<center><h1>Expense Records</h1></center>
+           <div class="buttons">
+             <div class = "page-add-button">
+              <center>
+                <p><a href = "{% url 'expense_record_form' %}" class = "btn btn-primary" >Add New Expense Record  </a> </p>
+              </center>
+            </div>
+           </div>
+
+       </div>
+       </div>
+
+{% if expenses %}
+{% for expense in expenses %}
+    <div class="container pt-1 my-5" style="border: 3px solid black;">
+    <h2>Expense Record</h2>
+    <h3>Issue date: {{expense.expense_report_date}}</h3>
+    <h3>Property: {{expense.property.name}}</h3>
+    <h3>Unit: {{expense.unit.name}}</h3>
+    <p>Expense Total: {{expense.expense_total}}</p>
+    <p>Notes: {{expense.notes}}</p>
+    
+    <p><a href = "{% url 'expense_item_list' expense.expense_record_id %}" class = "btn btn-primary" >Expense Items  </a> </p>
+    </div>
+    {% endfor%}
+    
+
+    {% else %}
+<p> There are no Expense Records </p>
+{% endif %}
+{% endblock %}
