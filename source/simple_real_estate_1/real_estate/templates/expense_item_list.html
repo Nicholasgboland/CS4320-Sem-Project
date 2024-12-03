@@ -22,7 +22,13 @@
     <p>Type: {{item.expense_type}}</p>
     <p>Category: {{item.expense_category}}
     
+
+
+
     <p>Notes: {{item.notes}}</p>
+    
+
+    <p><a href = "{% url 'delete_expense_item' item.expense_item_id%}" class = "btn btn-primary" >Delete New Expense Record Item  </a> </p>
     
     </div>
     {% endfor%}

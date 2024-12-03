@@ -15,6 +15,7 @@
     <p>Next Increase: {{agree.next_increase}}</p>
     <p>Last Increase: {{agree.last_increase}}</p>
     <p><a href = "{% url 'rental_invoice_list' agree.tenant.tenant_id %}" class = "btn btn-primary" >Rental Invoice</a> </p>
+    <p><a href = "{% url 'rental_agreement_update' agree.agreement_id %}" class = "btn btn-primary" >Update Rental Agreement</a> </p>
     {% endfor%}
 </ul>
 

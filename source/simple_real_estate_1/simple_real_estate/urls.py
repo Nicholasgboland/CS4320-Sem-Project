@@ -19,19 +19,24 @@ from django.urls import path, include
 from real_estate import views
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index, name='index'),
+    #path('', views.index, name='index'),
     #path('', views.index, name='login'),
-    path('properties/', views.properties, name = 'properties_list'),
+    path('', views.properties, name = 'properties_list'),
     path('property/update/<int:pk>/', views.updateProperty, name='update_property'),
     path('property/<int:pk>/delete/', views.delete_property, name='delete_property'),
     path('properties/property_form/', views.createProperty, name = 'property_form'),
     
     path('properties/<int:pk>/units/', views.units, name = 'units_list'),
     path('properties/<int:pk>/unit_form/', views.createUnit, name = 'unit_form'),
+    path('properties/unit/<int:pk>/update', views.updateUnit, name='update_unit'),
+    path('property/unit/<int:pk>/delete/', views.deleteUnit, name='delete_unit'),
+
 
 
     path('properties/units/<int:pk>/rental_agreement', views.rentalAgreement, name = 'rental_agreement_list'),
     path('properties/units/rental_agreement_form/<int:pk>', views.createRentalAgreement, name = 'rental_agreement_form'),
+    path('properties/units/rental_agreement/<int:pk>/update', views.updateRentalAgreement, name = 'rental_agreement_update'),
+    
 
 
     path('properties/units/rental_agreement/<int:pk>/rental_invoice', views.rentalInvoice, name = 'rental_invoice_list'),
@@ -40,6 +45,8 @@ urlpatterns = [
 
     path('tenants/', views.tenant, name = 'tenant_list'),
     path('tenants/tenate_form/', views.createTenant, name = 'tenant_form' ),
+    path('tenants/update/<int:pk>/', views.updateTenant, name='update_tenant'),
+    path('tenants/<int:pk>/delete/', views.deleteTenant, name='delete_tenant'),
 
 
 
@@ -55,6 +62,7 @@ urlpatterns = [
 
     path('expense_records/<int:pk>/expense_items', views.expense_item, name = 'expense_item_list'),
     path('expense_records/expense_items/<int:pk>/expense_item_form', views.createExpense_item, name = 'expense_item_form'),
+    path('expense_records/expense_item/<int:pk>/delete', views.delete_expense_item, name ='delete_expense_item')
 
      
 ]   
