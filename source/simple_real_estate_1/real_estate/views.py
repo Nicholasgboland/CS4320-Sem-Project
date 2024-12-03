@@ -72,7 +72,33 @@ def createUnit(request, pk):
     context = {'form': form}
     return render(request, 'create_unit.html', context)
 
+def updateUnit(request, pk):
+    unit = Unit.objects.get(pk=pk)
+    if request.method == 'POST':
+        form = UnitForm(request.POST, instance=unit)
+        if form.is_valid():
+            unit = form.save(commit=False)  
+            unit.save()  
+            return redirect('properties_list')
+    else:
+        form = UnitForm(instance=unit)  
+    context = {'form': form}
+    return render(request, 'create_unit.html', context)
 
+def deleteUnit(request, pk):
+   unit = Unit.objects.get(pk=pk)
+   if request.method == 'POST':
+      try:
+         print("got id")
+         
+         
+         unit.delete()
+         return redirect('properties_list')
+      except Unit.DoesNotExist:
+            # Handle the case where the project does not exist
+        print("does not exist")
+        return redirect('properties_list')  # Redirect to an appropriate page
+   return render(request, 'delete_unit.html', {'unit':unit})
 
 def tenant(request):
     tenants = Tenant.objects.all()
@@ -92,17 +118,45 @@ def createTenant(request):
     context = {'form': form}
     return render(request, 'create_tenant.html', context)
 
+def updateTenant(request, pk):
+    tenant = Tenant.objects.get(pk=pk)
+    if request.method == 'POST':
+        form = TenatForm(request.POST, instance=tenant)
+        if form.is_valid():
+            tenant = form.save(commit=False)  
+            tenant.save()  
+            return redirect('tenant_list')
+    else:
+        form = TenatForm(instance=tenant)  
+    context = {'form': form}
+    return render(request, 'create_tenant.html', context)
+
+def deleteTenant(request, pk):
+   tenant = Tenant.objects.get(pk=pk)
+   if request.method == 'POST':
+      try:
+         print("got id")
+         
+         
+         tenant.delete()
+         return redirect('tenant_list')
+      except Tenant.DoesNotExist:
+            # Handle the case where the project does not exist
+        print("does not exist")
+        return redirect('tenant_list')  # Redirect to an appropriate page
+   return render(request, 'delete_tenant.html', {'tenant':tenant})
 
 def rentalAgreement(request, pk):
     rent = RentalAgreement.objects.all().filter(unit_id =pk, active = True)
     return render(request, 'rental_aggrement.html', {'rent':rent, 'pk':pk})
 
 def createRentalAgreement(request, pk):
+    unit = Unit.objects.get(pk = pk)
     if request.method == 'POST':
         form = RentalAgreementForm(request.POST)
         if form.is_valid():
             rent = form.save(commit=False)  
-            
+            rent.unit =unit
             rent.save()  
             return redirect('rental_agreement_list', pk=pk)
             #return redirect('properties_list')
@@ -112,6 +166,21 @@ def createRentalAgreement(request, pk):
     
     context = {'form': form}
     return render(request, 'create_rental_agreement.html', context)
+
+
+def updateRentalAgreement(request, pk):
+    rent = RentalAgreement.objects.get(pk=pk)
+    if request.method == 'POST':
+        form = RentalAgreementForm(request.POST, instance=rent)
+        if form.is_valid():
+            rent = form.save(commit=False)  
+            rent.save()  
+            return redirect('rental_agreement_list', pk)
+    else:
+        form = RentalAgreementForm(instance=rent)  
+    context = {'form': form}
+    return render(request, 'create_rental_agreement.html', context)
+
 
 def rentalInvoice(request, pk):
     rent = RentalInvoice.objects.all().filter(tenant = pk)
@@ -168,11 +237,8 @@ def createExpense_Record(request):
         if form.is_valid():
             expense = form.save(commit=False)  
             
-            items = ExpenseRecordItem.objects.all().filter(expense_record_id = expense.expense_record_id)
-            total_expenses = 0
-            for item in items:
-                total_expenses += item.expense_item_cost
-            expense.expense_total = total_expenses
+            
+            expense.expense_total = 0
             expense.save()  
             return redirect('expense_record_list')
     else:

@@ -21,6 +21,8 @@
     <a>{{unit.name}}</a>
     <a>{{unit.unit_number}}</a>
     <a class="btn btn-primary" href = "{% url 'rental_agreement_list' unit.unit_id %}">Rental Agreement</a>
+    <p><a class="btn btn-primary" href = "{% url 'update_unit' unit.unit_id %}">View/Update Unit</a>
+        <a class="btn btn-danger" href = "{% url 'delete_unit' unit.unit_id %}">Delete Unit</a></p>
     </div>
     {% endfor%}
     {% else %}

@@ -23,6 +23,8 @@
     <a>{{tenant.phone}}</a>
     <a>{{tenant.email}}</a>
     <p><a>{{tenant.notes}}</a></p>
+    <p><a class="btn btn-primary" href = "{% url 'update_tenant' tenant.tenant_id %}">View/Update Tenant</a>
+        <a class="btn btn-danger" href = "{% url 'delete_tenant' tenant.tenant_id %}">Delete Tenant</a></p>
     </div>
     {% endfor%}
 </ul>

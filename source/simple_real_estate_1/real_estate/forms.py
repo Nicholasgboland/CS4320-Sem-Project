@@ -26,7 +26,7 @@ class TenatForm(ModelForm):
 class RentalAgreementForm(ModelForm):
     class Meta:
         model = RentalAgreement
-        fields = ('unit', 'tenant', 'contract_num', 'contract_docs', 'start_date', 'end_date', 'curr_rent', 'accepted', 'active', 'payment_sched', 'notes', 'next_increase', 'last_increase')
+        fields = ( 'tenant', 'contract_num', 'contract_docs', 'start_date', 'end_date', 'curr_rent', 'accepted', 'active', 'payment_sched', 'notes', 'next_increase', 'last_increase')
 
 class RentalInvoiceForm(ModelForm):
     class Meta:
