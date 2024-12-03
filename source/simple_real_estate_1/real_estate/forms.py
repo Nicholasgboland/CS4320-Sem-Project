@@ -16,7 +16,7 @@ class MaintencRecordForm(ModelForm):
 class UnitForm(ModelForm):
     class Meta:
         model = Unit
-        fields = ('property', 'name', 'unit_number', 'sqr_ft', 'price_per_sqqr_ft', 'notes')
+        fields = ( 'name', 'unit_number', 'sqr_ft', 'price_per_sqqr_ft', 'notes')
 
 class TenatForm(ModelForm):
     class Meta:

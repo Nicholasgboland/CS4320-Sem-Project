@@ -55,14 +55,15 @@ def delete_property(request, pk):
 
 def units(request, pk):
     units = Unit.objects.all().filter(property_id =pk)
-    return render(request, 'unit_list.html', {'units':units})
+    return render(request, 'unit_list.html', {'units':units, 'pk':pk})
 
-def createUnit(request):
+def createUnit(request, pk):
+    property1 = Property.objects.get(property_id = pk)
     if request.method == 'POST':
         form = UnitForm(request.POST)
         if form.is_valid():
             unit = form.save(commit=False)  
-            
+            unit.property = property1
             unit.save()  
             return redirect('properties_list')
     else:
