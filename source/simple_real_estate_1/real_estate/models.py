@@ -25,7 +25,7 @@ class ExpenseRecordItem(models.Model):
     expense_item_id = models.BigAutoField(primary_key=True)
     expense_record = models.ForeignKey(ExpenseRecord, models.DO_NOTHING)
     expense_item_name = models.TextField()
-    expense_item_cost = models.TextField(blank=True, null=True)  # This field type is a guess.
+    expense_item_cost = models.IntegerField(blank=True, null=True)  # This field type is a guess.
     expense_type = models.TextField()
     expense_category = models.TextField(null=True)
     notes = models.TextField(null=True)

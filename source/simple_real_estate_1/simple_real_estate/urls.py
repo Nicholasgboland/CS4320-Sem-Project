@@ -55,6 +55,7 @@ urlpatterns = [
 
     path('expense_records/<int:pk>/expense_items', views.expense_item, name = 'expense_item_list'),
     path('expense_records/expense_items/<int:pk>/expense_item_form', views.createExpense_item, name = 'expense_item_form'),
+    path('temp/<int:pk>/', views.delete_expense_item, name ='delete_expense_item')
 
      
 ]   

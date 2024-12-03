@@ -154,6 +154,12 @@ def createMaintenceRecord(request, pk):
 
 def expense_record(request):
     expenses = ExpenseRecord.objects.all()
+    for expense in expenses:
+        items = ExpenseRecordItem.objects.all().filter(expense_record_id = expense.expense_record_id)
+        total_expenses = 0
+        for item in items:
+            total_expenses += float(item.expense_item_cost)
+        expense.expense_total = total_expenses
     return render(request, 'expense_record_list.html', {'expenses':expenses})
 
 def createExpense_Record(request):
@@ -162,6 +168,11 @@ def createExpense_Record(request):
         if form.is_valid():
             expense = form.save(commit=False)  
             
+            items = ExpenseRecordItem.objects.all().filter(expense_record_id = expense.expense_record_id)
+            total_expenses = 0
+            for item in items:
+                total_expenses += item.expense_item_cost
+            expense.expense_total = total_expenses
             expense.save()  
             return redirect('expense_record_list')
     else:
@@ -190,3 +201,18 @@ def createExpense_item(request, pk):
     
     context = {'form': form}
     return render(request, 'create_expense_item.html', context)
+
+def delete_expense_item(request, pk):
+   property = ExpenseRecordItem.objects.get(pk=pk)
+   if request.method == 'POST':
+      try:
+         print("got id")
+         
+         
+         property.delete()
+         return redirect('expense_record_list')
+      except Property.DoesNotExist:
+            # Handle the case where the project does not exist
+        print("does not exist")
+        return redirect('expense_record_list')  # Redirect to an appropriate page
+   return render(request, 'delete_property.html', {'property':property})

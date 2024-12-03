@@ -35,7 +35,7 @@ class RentalInvoiceForm(ModelForm):
 class ExpenseRecordForm(ModelForm):
     class Meta:
         model = ExpenseRecord
-        fields = ('expense_report_date', 'property', 'unit', 'expense_total', 'notes')
+        fields = ('expense_report_date', 'property', 'unit', 'notes')
 
 
 class ExpenseItemForm(ModelForm):

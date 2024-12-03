@@ -20,7 +20,8 @@
     <h3>Issue date: {{expense.expense_report_date}}</h3>
     <h3>Property: {{expense.property.name}}</h3>
     <h3>Unit: {{expense.unit.name}}</h3>
-    <p>Expense Total: {{expense.expense_total}}</p>
+    <p>Expense Total: ${{expense.expense_total}}</p>
+    
     <p>Notes: {{expense.notes}}</p>
     
     <p><a href = "{% url 'expense_item_list' expense.expense_record_id %}" class = "btn btn-primary" >Expense Items  </a> </p>
