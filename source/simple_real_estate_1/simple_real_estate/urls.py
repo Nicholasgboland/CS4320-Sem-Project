@@ -35,7 +35,7 @@ urlpatterns = [
 
 
     path('properties/units/rental_agreement/<int:pk>/rental_invoice', views.rentalInvoice, name = 'rental_invoice_list'),
-
+    path('properties/units/rental_agreement/rental_invoice_form/<int:pk>', views.createRentalInvoice, name = 'rental_invoice_form'),
 
 
     path('tenants/', views.tenant, name = 'tenant_list'),
@@ -48,4 +48,13 @@ urlpatterns = [
 
 
     path('maintence_records/<int:pk>', views.maintence_record, name = 'maintence_records'),
-]
+
+
+    path('expense_records/', views.expense_record, name = 'expense_record_list'),
+    path('expense_records/expense_record_form/', views.createExpense_Record, name = 'expense_record_form'),
+
+    path('expense_records/<int:pk>/expense_items', views.expense_item, name = 'expense_item_list'),
+    path('expense_records/expense_items/<int:pk>/expense_item_form', views.createExpense_item, name = 'expense_item_form'),
+
+     
+]   

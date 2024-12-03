@@ -6,7 +6,7 @@
              <div class = "page-add-button">
               <center>
               
-               <p><a href = "{% url 'unit_form' %}" class = "btn btn-primary" >Add New Invoice  </a> </p>
+               <p><a href = "{% url 'rental_invoice_form' pk %}" class = "btn btn-primary" >Add New Invoice  </a> </p>
               </center>
             </div>
            </div>
@@ -18,9 +18,16 @@
 {% for invoice in rent %}
     <div class="container pt-1 my-5" style="border: 3px solid black;">
     <h2>Invoice</h2>
-   
+    <h3>Issue date: {{invoice.issue_date}}</h3>
+    <h3>Cash Received Date: {{invoice.cash_date}}</h3>
+    <h3>Amount Received: {{invoice.amount_paid}}</h3>
+    <p>Tenant: {{invoice.tenant.name}}</p>
+    <p>Check Number: {{invoice.check_num}}</p>
+    
     </div>
     {% endfor%}
+
+
     {% else %}
 <p> There are no Invoices </p>
 {% endif %}

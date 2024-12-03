@@ -17,8 +17,10 @@
 {% for record in records %}
     <div class="container pt-1 my-5" style="border: 3px solid black;">
     <h2>Record</h2>
-    <a>{{record.maint_record_date}}
-    <a>{{record.notes}}</a>
+    <p><a>{{record.maint_record_date}}<p>
+    <p><a>{{record.property.name}}</a></p>
+    <p><a>{{record.unit.name}}</a></p>
+    <p><a>{{record.notes}}</a></p>
     
      
     

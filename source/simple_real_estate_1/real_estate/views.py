@@ -114,21 +114,21 @@ def createRentalAgreement(request, pk):
 
 def rentalInvoice(request, pk):
     rent = RentalInvoice.objects.all().filter(tenant = pk)
-    return render(request, 'rental_invoice_list.html', {'rent':rent})
+    return render(request, 'rental_invoice_list.html', {'rent':rent, 'pk':pk})
 
 def createRentalInvoice(request, pk):
     if request.method == 'POST':
-        form = MaintencRecordForm(request.POST)
+        form = RentalInvoiceForm(request.POST)
         if form.is_valid():
-            record = form.save(commit=False)  
+            rent = form.save(commit=False)  
             
-            record.save()  
-            return redirect('maintence_records', pk=pk)
+            rent.save()  
+            return redirect('rental_invoice_list', pk=pk)
     else:
-        form = MaintencRecordForm()  
+        form = RentalInvoiceForm()  
     
     context = {'form': form}
-    return render(request, 'create_maintence_record.html', context)
+    return render(request, 'create_rental_invoice.html', context)
 
 
 def maintence_record(request, pk):
@@ -151,3 +151,41 @@ def createMaintenceRecord(request, pk):
     context = {'form': form}
     return render(request, 'create_maintence_record.html', context)
 
+def expense_record(request):
+    expenses = ExpenseRecord.objects.all()
+    return render(request, 'expense_record_list.html', {'expenses':expenses})
+
+def createExpense_Record(request):
+    if request.method == 'POST':
+        form = ExpenseRecordForm(request.POST)
+        if form.is_valid():
+            expense = form.save(commit=False)  
+            
+            expense.save()  
+            return redirect('expense_record_list')
+    else:
+        form = ExpenseRecordForm()  
+    
+    context = {'form': form}
+    return render(request, 'create_expense_record.html', context)
+
+
+
+
+def expense_item(request, pk):
+    items = ExpenseRecordItem.objects.all().filter(expense_record_id =pk)
+    return render(request, 'expense_item_list.html', {'items':items, 'pk':pk})
+
+def createExpense_item(request, pk):
+    if request.method == 'POST':
+        form = ExpenseItemForm(request.POST)
+        if form.is_valid():
+            expense = form.save(commit=False)  
+            
+            expense.save()  
+            return redirect('expense_item_list', pk)
+    else:
+        form = ExpenseItemForm()  
+    
+    context = {'form': form}
+    return render(request, 'create_expense_item.html', context)
