@@ -27,7 +27,7 @@ urlpatterns = [
     path('properties/property_form/', views.createProperty, name = 'property_form'),
     
     path('properties/<int:pk>/units/', views.units, name = 'units_list'),
-    path('properties/unit_form/', views.createUnit, name = 'unit_form'),
+    path('properties/<int:pk>/unit_form/', views.createUnit, name = 'unit_form'),
 
 
     path('properties/units/<int:pk>/rental_agreement', views.rentalAgreement, name = 'rental_agreement_list'),
