@@ -2,16 +2,14 @@
 
 ## Requirements
 * Windows 10 / 11 Machine
-* Python3
+* Python3, Django, Bootstrap v.5
 
 ## Install Steps
 
-1) Download the most current release
-   * Select ``` Windows x86-64 ``` for version 17.0+
-2) Extract the release in desired directory
-3) Run the installer
+1) Extract the release in desired directory
+2) Run the installer
    * In the release's source directory, run the following command:
-     * python3 simple_real_estate.py -i
-
+     * ` python3 simple_real_estate.py -i `
 4) The program is now installed and ready to run, which can be done by the following command:
-   * python3 simple_real_estate.py -r
+   * ` python3 simple_real_estate.py -r `
+5) Open a webrowser and navigate to ` http://127.0.0.1:8000/ `
