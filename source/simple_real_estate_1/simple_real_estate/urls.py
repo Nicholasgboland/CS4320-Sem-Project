@@ -19,9 +19,9 @@ from django.urls import path, include
 from real_estate import views
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index, name='index'),
+    #path('', views.index, name='index'),
     #path('', views.index, name='login'),
-    path('properties/', views.properties, name = 'properties_list'),
+    path('', views.properties, name = 'properties_list'),
     path('property/update/<int:pk>/', views.updateProperty, name='update_property'),
     path('property/<int:pk>/delete/', views.delete_property, name='delete_property'),
     path('properties/property_form/', views.createProperty, name = 'property_form'),

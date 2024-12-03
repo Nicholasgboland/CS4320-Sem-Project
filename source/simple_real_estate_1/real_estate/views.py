@@ -4,8 +4,7 @@ from .models import *
 from .forms import *
 
 # Create your views here.
-def index(request):
-    return render(request, 'test.html')
+
 def properties(request):
     properties = Property.objects.all()
     return render(request, 'properties_list.html', {'properties':properties})
