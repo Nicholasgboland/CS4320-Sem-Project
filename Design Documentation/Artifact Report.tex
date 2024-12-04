@@ -1,0 +1,169 @@
+\documentclass[11pt]{article}  
+\usepackage[margin=1in]{geometry}
+\parindent=0in
+\parskip=8pt
+\usepackage{fancyhdr,amssymb,amsmath, graphicx, listings,float,subfig,enumerate,epstopdf,color,multirow,setspace,bm,textcomp}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{hyperref}
+
+\pagestyle{fancy}
+%\linespread{1.3}
+\makeatletter
+\renewcommand\section{\@startsection{section}{1}{\z@}%
+                                  {-3.5ex \@plus -1ex \@minus -.2ex}%
+                                  {2.3ex \@plus.2ex}%
+                                  {\normalfont\large\bfseries}}
+\makeatother
+
+\makeatletter
+\renewcommand\section{\@startsection{section}{1}{\z@}%
+                                  {-3.5ex \@plus -1ex \@minus -.2ex}%
+                                  {2.3ex \@plus.2ex}%
+                                  {\normalfont\large\bfseries}}
+\makeatother
+
+\def\deg{\operatorname{ deg }}
+\def\Span{\operatorname{ span }}
+\def\trace{\operatorname{ trace }}
+\def\floor{\operatorname{ floor }}
+\def\sgn{\operatorname{ sgn }}
+\newcommand{\inner}[1]{\langle #1 \rangle}
+\newcommand{\qed}{\hfill $\square$ }
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\m}[1]{\mathbf{ #1 }}
+\newcommand{\tb}[1]{\textbf{#1}}
+\newcommand{\red}[1]{{\color{red} \textbf{#1}}}
+\newcommand{\blue}[1]{{\color{Blue} \textbf{#1}}}
+\newcommand{\that}{\textasciicircum}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\setcounter{tocdepth}{4}
+\setcounter{secnumdepth}{4}
+
+\begin{document} 
+
+\lhead{Artifact Report}
+\chead{CS 4320/5320 Software Design}
+\rhead{Fall 2024}
+
+\begin{center}
+    \begin{Large}
+        Simple Real Estate
+        
+        Artifact Report
+    \end{Large}
+
+    \begin{small}
+        Authors: Nicholas Boland - Craig Lillemon
+    \end{small}
+
+\end{center}
+
+\tableofcontents
+
+\section{Design Purpose}
+    \begin{itemize}
+        \item This product is a simple real estate management program, focused primarily on personal, non-corporate landlords. It shall provide capability to manage properties and rents associated. Focus on creating maintenance and expense reports, alongside generated profit reports based on rent and those expenses. It will be implemented as a SaaS (Software as a Service), Using Python with Django which enforces a MVT architecture.
+        \item Intended Customers and Intended End-Users are personal, non-corporate landlords. Value created is simplicity in generating profit and expense reports based on given data.
+
+    \end{itemize}
+
+\section{GitHub Link:} \url{https://github.com/Nicholasgboland/CS4320-Semester-Project/tree/main}
+
+\section{License:}
+    \begin{itemize}
+        \item The license we decided to use was the MIT Open Source License
+        \item MIT License
+
+Copyright (c) 2024 Craig Lillemon, Nicholas Boland
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+    \end{itemize}
+
+\section{Software Requirements}
+    \begin{itemize}
+        \item \textit{Functional requirements / Use-cases:}
+            \begin{itemize}
+                \item UC1: Add/Remove Properties
+                \item UC2: View/Modify Properties 
+                \item UC3: Add/Remove Units  
+                \item UC4: View/Modify Units
+                \item UC5: Add Maintenance Records and Quotes
+                \item UC6: Add Expenses
+                \item UC7: Generate Profit/Expense Reports
+                \item UC8: Add/Remove Tenants
+                \item UC9: View/Modify Tenants
+                \item UC10: Add Rental Agreements
+                \item UC11: View/Modify Rental Agreements
+            \end{itemize}
+        \item \textit{Functional Requirements / Use-cases implemented in the prototype:} 
+            \begin{itemize}
+                \item UC1: All features implemented
+                \item UC2: All features implemented
+                \item UC3: All features implemented
+                \item UC4: All features implemented
+                \item UC5: Ability to add Maintenance Records implemented, but not to add Quotes
+                \item UC6: All features implemented
+                \item UC7: Ability to generate Expense Reports implemented, but not to generate Profit Reports
+                \item UC8: All features implemented
+                \item UC9: All features implemented
+                \item UC10: All features implemented
+                \item UC11: All features implemented
+            \end{itemize}
+        \item \textit{Quality Attributes / Non-Function Requirements:}
+            \begin{itemize}
+                \item QA1: Security 
+                \item QA2: Usability
+                \item QA3: Manageability
+                \item QA4: Modularity
+            \end{itemize}
+        \item \textit{Architectural Constraints:}
+            \begin{itemize}
+                \item CON1: The application must be accessed via a web browser
+                \item CON2: User must have an active network connection
+                \item CON3: Prior reports must be stored and accessible
+                \item CON4: Modular design allowing future modifications with ease
+            \end{itemize}
+        \item \textit{Architectural Concerns:}
+            \begin{itemize}
+                \item CNR1: Developing a ground up system 
+                \item CNR2: Leveraging team’s knowledge in Python, Django, HTML, and SQLite
+                \item CNR3: Work allocated to small development team
+            \end{itemize}
+    \end{itemize}
+
+\section{Architecturally Significant Requirements:}
+    \begin{itemize}
+        \item 
+    \end{itemize}
+
+\section{Diagrams:}
+    \begin{itemize}
+        \item The four UML diagrams chosen were the Use Case Diagram, Model/Class Diagram, Sequence Diagram, and the Activity Diagram.
+        \item All diagrams delivered as separate PNG files in the GZIP file containing this document.
+    \end{itemize}
+            
+\end{document}
+
