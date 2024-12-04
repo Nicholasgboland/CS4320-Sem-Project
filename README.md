@@ -11,3 +11,4 @@ The Project was also had an idea for client server however was not implemented i
 The maintence record has a couple models that can be used for invoice, quotes and so on that was not implemented for the maintence records. It could be done in a similar way the expense reports and expense items was done if you were to attempt to do it on your own.,
 The Project use Django for its model view template, and uses bootstrap 5 for the implementation of the nav bar and displaying the items. 
 This project has a severe lack of CSS which can be done in order to make it look nicer, the part I would focus on first though is the forms, as it uses the django tables to auto generate them 
+Some Key compenents to be aware of is Property is used in unit and expenses, and units contain a rental agreement, while the rental agreement contains the tenants. 
